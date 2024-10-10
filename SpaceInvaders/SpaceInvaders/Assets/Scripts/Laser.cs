@@ -15,7 +15,6 @@ public class Laser : Projectile
     void Update()
     {
         transform.position += speed * Time.deltaTime * direction;
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -27,7 +26,8 @@ public class Laser : Projectile
     {
         Bunker bunker = collision.gameObject.GetComponent<Bunker>();
 
-        if(bunker == null) //Om det inte är en bunker vi träffat så ska skottet försvinna.
+            //Om det inte är en bunker vi träffat så ska skottet försvinna.
+        if(bunker == null) 
         {
             Destroy(gameObject);
         }
