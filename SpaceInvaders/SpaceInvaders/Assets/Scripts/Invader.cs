@@ -46,10 +46,11 @@ public class Invader : MonoBehaviour
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Laser"))
         {
-            ParticleSystem death = Instantiate(dieEffect);
-            //dieEffect = Instantiate(dieEffect, transform.position, Quaternion.identity);
+            //ParticleSystem death = Instantiate(dieEffect);
+            dieEffect = Instantiate(dieEffect, transform.position, Quaternion.identity);
             GameManager.Instance.OnInvaderKilled(this);
-            Destroy(death);
+            //Destroy(death);
+            Destroy(dieEffect);
 
            
         }
