@@ -43,6 +43,8 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && laser == null)
         {
+            GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(0.5f);
+
             laser = Instantiate(laserPrefab, transform.position, Quaternion.identity);
         }
     }

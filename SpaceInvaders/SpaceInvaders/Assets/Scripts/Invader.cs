@@ -13,6 +13,9 @@ public class Invader : MonoBehaviour
     public Sprite[] animationSprites = new Sprite[2];
     public float animationTime;
 
+    public SpriteRenderer spr;
+    public float flash = 0;
+
     SpriteRenderer spRend;
     int animationFrame;
     // Start is called before the first frame update
@@ -25,8 +28,31 @@ public class Invader : MonoBehaviour
 
     void Start()
     {
+        flash = -1;
+
         //Anropar AnimateSprite med ett visst tidsintervall
         InvokeRepeating( nameof(AnimateSprite) , animationTime, animationTime);
+    }
+
+    private void Update()
+    {
+        flash -= Time.deltaTime*30f;
+
+        if (flash > 0)
+        {
+            spr.enabled = true;
+            spRend.enabled = false;
+        }
+        else
+        {
+            spr.enabled = false;
+            spRend.enabled = true;
+        }
+
+        if(flash <= 1 && flash > 0)
+        {
+            GameManager.Instance.OnInvaderKilled(this);
+        }
     }
 
     //pandlar mellan olika sprited för att skapa en animation
@@ -44,7 +70,8 @@ public class Invader : MonoBehaviour
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Laser"))
         {
-            GameManager.Instance.OnInvaderKilled(this);
+            flash = 5;
+            GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(1);
         }
         else if(collision.gameObject.layer == LayerMask.NameToLayer("Boundary")) //nått nedre kanten
         {
