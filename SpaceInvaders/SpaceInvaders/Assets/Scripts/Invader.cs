@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security;
 using UnityEditor.Build.Content;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ public class Invader : MonoBehaviour
 {
     public Sprite[] animationSprites = new Sprite[2];
     public float animationTime;
+    public ParticleSystem dieEffect;
 
     SpriteRenderer spRend;
     int animationFrame;
@@ -44,7 +46,13 @@ public class Invader : MonoBehaviour
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Laser"))
         {
+            //ParticleSystem death = Instantiate(dieEffect);
+            dieEffect = Instantiate(dieEffect, transform.position, Quaternion.identity);
             GameManager.Instance.OnInvaderKilled(this);
+            //Destroy(death);
+            Destroy(dieEffect);
+
+           
         }
         else if(collision.gameObject.layer == LayerMask.NameToLayer("Boundary")) //nått nedre kanten
         {

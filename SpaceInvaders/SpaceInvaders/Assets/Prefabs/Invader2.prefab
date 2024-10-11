@@ -175,3 +175,4 @@ MonoBehaviour:
   - {fileID: 21300000, guid: baf4633d35ba38b4a9ec8df46c98c82c, type: 3}
   - {fileID: 21300000, guid: 207be446a7de0c4428abcfa1ab31a8ea, type: 3}
   animationTime: 1
+  dieEffect: {fileID: 767865909579053631, guid: ef226467a335c3f4e96df975173a9618, type: 3}
