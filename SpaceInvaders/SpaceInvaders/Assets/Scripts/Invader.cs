@@ -13,29 +13,28 @@ public class Invader : MonoBehaviour
 {
     public Sprite[] animationSprites = new Sprite[2];
     public float animationTime;
-    public ParticleSystem dieEffect;
+    public ParticleSystem deathEffectPrefab;
 
     SpriteRenderer spRend;
     int animationFrame;
-    // Start is called before the first frame update
-
     private void Awake()
     {
         spRend = GetComponent<SpriteRenderer>();
         spRend.sprite = animationSprites[0];
+
     }
 
     void Start()
     {
         //Anropar AnimateSprite med ett visst tidsintervall
-        InvokeRepeating( nameof(AnimateSprite) , animationTime, animationTime);
+        InvokeRepeating(nameof(AnimateSprite), animationTime, animationTime);
     }
 
     //pandlar mellan olika sprited för att skapa en animation
     private void AnimateSprite()
     {
         animationFrame++;
-        if(animationFrame >= animationSprites.Length)
+        if (animationFrame >= animationSprites.Length)
         {
             animationFrame = 0;
         }
@@ -44,17 +43,17 @@ public class Invader : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Laser"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Laser"))
         {
-            //ParticleSystem death = Instantiate(dieEffect);
-            dieEffect = Instantiate(dieEffect, transform.position, Quaternion.identity);
+            //Invadern dör
             GameManager.Instance.OnInvaderKilled(this);
-            //Destroy(death);
-            Destroy(dieEffect);
-
-           
+            
+            //Skapar, spelar och tar bort partiklar
+            ParticleSystem dieEffect = Instantiate(deathEffectPrefab, transform.position, Quaternion.identity);
+            dieEffect.Play();
+            Destroy(dieEffect.gameObject, dieEffect.main.duration);
         }
-        else if(collision.gameObject.layer == LayerMask.NameToLayer("Boundary")) //nått nedre kanten
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("Boundary")) //nått nedre kanten
         {
             GameManager.Instance.OnBoundaryReached();
         }
