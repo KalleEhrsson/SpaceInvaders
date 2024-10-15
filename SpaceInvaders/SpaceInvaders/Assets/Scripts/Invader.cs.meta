@@ -4,7 +4,7 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - dieEffect: {fileID: 767865909579053631, guid: ef226467a335c3f4e96df975173a9618, type: 3}
+  - deathEffectPrefab: {fileID: 767865909579053631, guid: ef226467a335c3f4e96df975173a9618, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
