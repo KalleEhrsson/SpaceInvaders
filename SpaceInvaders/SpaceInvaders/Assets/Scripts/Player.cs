@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     float speed = 10f;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector3 position = transform.position;
 
