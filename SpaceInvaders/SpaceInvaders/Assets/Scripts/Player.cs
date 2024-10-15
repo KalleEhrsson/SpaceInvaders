@@ -9,13 +9,20 @@ public class Player : MonoBehaviour
 {
     public Laser laserPrefab;
     Laser laser;
-    float speed = 10f;
+   // float speed = 10f;
+    public Animator anim;
+    float x_position = 0f;
+    public bool left = false;
+    public bool right = false;
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        anim.Play("Idle");
+
         Vector3 position = transform.position;
 
+        /*
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             position.x -= speed * Time.deltaTime;
@@ -33,6 +40,40 @@ public class Player : MonoBehaviour
         {
             position.x += speed * Time.deltaTime;
         }
+        */
+
+        if (GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beattimer > 0f)
+        {
+            if (Input.GetKey(KeyCode.A))
+            {
+                if (GameObject.Find("GregoryHeart").GetComponent<HeartCode>().input == false && left == false)
+                {
+                    x_position -= 5f;
+                    GameObject.Find("GregoryHeart").GetComponent<HeartCode>().input = true;
+                    left = true;
+                }
+            }
+            else
+            {
+                left = false;
+            }
+
+            if (Input.GetKey(KeyCode.D))
+            {
+                if (GameObject.Find("GregoryHeart").GetComponent<HeartCode>().input == false && right == false)
+                {
+                    x_position += 5f;
+                    GameObject.Find("GregoryHeart").GetComponent<HeartCode>().input = true;
+                    right = true;
+                }
+            }
+            else
+            {
+                right = false;
+            }
+        }
+
+        position = new Vector3(position.x + ((x_position - position.x) * 10f * Time.deltaTime), position.y, position.z);
 
         Vector3 leftedge = Camera.main.ViewportToWorldPoint(Vector3.zero);
         Vector3 rightedge = Camera.main.ViewportToWorldPoint(Vector3.right);

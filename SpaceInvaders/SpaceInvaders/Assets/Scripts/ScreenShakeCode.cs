@@ -19,7 +19,7 @@ public class ScreenShakeCode : MonoBehaviour
     {
         transform.position = new Vector3(Random.Range(-shake, shake), Random.Range(-shake, shake), -10);
 
-        if (shake >= 0f) shake -= Time.deltaTime * 10f;
+        if (shake > 0f) shake -= Time.deltaTime * 10f;
 
         shake = Mathf.Clamp(shake, 0, 100);
 
@@ -32,7 +32,7 @@ public class ScreenShakeCode : MonoBehaviour
             GetComponent<Camera>().backgroundColor = new Color(0.1f, 0.1f, 0.1f);
         }
 
-        if (flash >= 0f) flash -= Time.deltaTime * 10f;
+        if (flash > 0f) flash -= Time.deltaTime * 10f;
 
         flash = Mathf.Clamp(flash, 0, 100);
     }
