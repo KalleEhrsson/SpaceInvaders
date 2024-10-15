@@ -45,6 +45,8 @@ public class Invader : MonoBehaviour
         if(collision.gameObject.layer == LayerMask.NameToLayer("Laser"))
         {
             GameManager.Instance.OnInvaderKilled(this);
+            GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenFlash(0.1f);
+            GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(1);
         }
         else if(collision.gameObject.layer == LayerMask.NameToLayer("Boundary")) //nått nedre kanten
         {

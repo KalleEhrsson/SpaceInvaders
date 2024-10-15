@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     float speed = 10f;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector3 position = transform.position;
 
@@ -43,6 +43,8 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && laser == null)
         {
+            GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(0.5f);
+
             laser = Instantiate(laserPrefab, transform.position, Quaternion.identity);
         }
     }
