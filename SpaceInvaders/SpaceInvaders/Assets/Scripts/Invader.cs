@@ -13,7 +13,7 @@ public class Invader : MonoBehaviour
 {
     public Sprite[] animationSprites = new Sprite[2];
     public float animationTime;
-    public ParticleSystem dieEffect;
+    public ParticleSystem deathEffectPrefab;
 
     SpriteRenderer spRend;
     int animationFrame;
@@ -46,13 +46,13 @@ public class Invader : MonoBehaviour
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Laser"))
         {
-            //ParticleSystem death = Instantiate(dieEffect);
-            dieEffect = Instantiate(dieEffect, transform.position, Quaternion.identity);
+            //Invadern dör
             GameManager.Instance.OnInvaderKilled(this);
-            //Destroy(death);
-            Destroy(dieEffect);
 
-           
+            //Skapar, spelar och tar bort partiklar
+            ParticleSystem dieEffect = Instantiate(deathEffectPrefab, transform.position, Quaternion.identity);
+            dieEffect.Play();
+            Destroy(dieEffect.gameObject, dieEffect.main.duration);
         }
         else if(collision.gameObject.layer == LayerMask.NameToLayer("Boundary")) //nått nedre kanten
         {
