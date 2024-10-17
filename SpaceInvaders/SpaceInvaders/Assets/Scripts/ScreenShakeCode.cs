@@ -6,12 +6,14 @@ public class ScreenShakeCode : MonoBehaviour
 {
     public float shake = 0f;
     public float flash = 0f;
+    public float time = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
         shake = 5f;
         flash = 5f;
+        time = 1f;
     }
 
     // Update is called once per frame
@@ -35,6 +37,19 @@ public class ScreenShakeCode : MonoBehaviour
         if (flash > 0f) flash -= Time.deltaTime * 10f;
 
         flash = Mathf.Clamp(flash, 0, 100);
+
+        if (time > 0f) time -= Time.deltaTime * 10f;
+
+        time = Mathf.Clamp(time, 0, 100);
+
+        if (time > 0)
+        {
+            Time.timeScale = 0.5f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
     }
 
     public void ScreenShake(float screen_shake)
@@ -45,5 +60,10 @@ public class ScreenShakeCode : MonoBehaviour
     public void ScreenFlash(float screen_flash)
     {
         flash = screen_flash;
+    }
+
+    public void TimeSlow(float _time)
+    {
+        time = _time;
     }
 }

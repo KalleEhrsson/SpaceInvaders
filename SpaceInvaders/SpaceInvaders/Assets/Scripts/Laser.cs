@@ -19,7 +19,7 @@ public class Laser : Projectile
         speed = 80f;
         if (weak == true)
         {
-            speed = 30f;
+            speed = 40f;
             transform.localScale = new Vector3(0.25f, 0.25f, 1f);
         }
 

@@ -9,18 +9,17 @@ public class Player : MonoBehaviour
 {
     public Laser laserPrefab;
    // float speed = 10f;
-    public Animator anim;
     float x_position = 0f;
     public bool left = false;
     public bool right = false;
     public bool shoot = false;
     public bool move = false;
+    public float x_scale = 0f;
+    public float y_scale = 0f;
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        anim.Play("Idle");
-
         Vector3 position = transform.position;
 
         /*
@@ -56,6 +55,9 @@ public class Player : MonoBehaviour
                         GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beat = true;
                         GameObject.Find("GregoryHeart").GetComponent<HeartCode>().current_line = 0;
                         GameObject.Find("GregoryHeart").GetComponent<HeartCode>().scale = 1.5f;
+                        GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(0.5f);
+                        x_scale = 1.5f;
+                        y_scale = 0.5f;
                         left = true;
                         move = true;
                     }
@@ -91,6 +93,9 @@ public class Player : MonoBehaviour
                         GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beat = true;
                         GameObject.Find("GregoryHeart").GetComponent<HeartCode>().current_line = 0;
                         GameObject.Find("GregoryHeart").GetComponent<HeartCode>().scale = 1.5f;
+                        GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(0.5f);
+                        x_scale = 1.5f;
+                        y_scale = 0.5f;
                         right = true;
                         move = true;
                     }
@@ -130,7 +135,7 @@ public class Player : MonoBehaviour
                 {
                     if (GameObject.Find("GregoryHeart").GetComponent<HeartCode>().input == false)
                     {
-                        GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(0.5f);
+                        GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(1f);
 
                         Laser laser_object = Instantiate(laserPrefab, transform.position, Quaternion.identity);
                         laser_object.GetComponent<Laser>().weak = true;
@@ -141,6 +146,8 @@ public class Player : MonoBehaviour
                         GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beat = true;
                         GameObject.Find("GregoryHeart").GetComponent<HeartCode>().current_line = 0;
                         GameObject.Find("GregoryHeart").GetComponent<HeartCode>().scale = 1.5f;
+                        x_scale = 0.5f;
+                        y_scale = 1.5f;
 
                         shoot = true;
                     }
@@ -162,6 +169,11 @@ public class Player : MonoBehaviour
         {
             shoot = false;
         }
+
+        x_scale += (1 - x_scale) * 10f * Time.deltaTime;
+        y_scale += (1 - y_scale) * 10f * Time.deltaTime;
+
+        transform.localScale = new Vector3(x_scale, y_scale, 1f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
