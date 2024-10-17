@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security;
 using UnityEditor.Build.Content;
 using UnityEngine;
 
@@ -12,28 +13,28 @@ public class Invader : MonoBehaviour
 {
     public Sprite[] animationSprites = new Sprite[2];
     public float animationTime;
+    public ParticleSystem deathEffectPrefab;
 
     SpriteRenderer spRend;
     int animationFrame;
-    // Start is called before the first frame update
-
     private void Awake()
     {
         spRend = GetComponent<SpriteRenderer>();
         spRend.sprite = animationSprites[0];
+
     }
 
     void Start()
     {
         //Anropar AnimateSprite med ett visst tidsintervall
-        InvokeRepeating( nameof(AnimateSprite) , animationTime, animationTime);
+        InvokeRepeating(nameof(AnimateSprite), animationTime, animationTime);
     }
 
-    //pandlar mellan olika sprited för att skapa en animation
+    //pandlar mellan olika sprited fï¿½r att skapa en animation
     private void AnimateSprite()
     {
         animationFrame++;
-        if(animationFrame >= animationSprites.Length)
+        if (animationFrame >= animationSprites.Length)
         {
             animationFrame = 0;
         }
@@ -42,13 +43,19 @@ public class Invader : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Laser"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Laser"))
         {
+            //Invadern dï¿½r
             GameManager.Instance.OnInvaderKilled(this);
             GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenFlash(0.1f);
             GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(1);
+            
+            //Skapar, spelar och tar bort partiklar
+            ParticleSystem dieEffect = Instantiate(deathEffectPrefab, transform.position, Quaternion.identity);
+            dieEffect.Play();
+            Destroy(dieEffect.gameObject, dieEffect.main.duration);
         }
-        else if(collision.gameObject.layer == LayerMask.NameToLayer("Boundary")) //nått nedre kanten
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("Boundary")) //nï¿½tt nedre kanten
         {
             GameManager.Instance.OnBoundaryReached();
         }
