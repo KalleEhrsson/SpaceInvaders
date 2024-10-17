@@ -136,11 +136,12 @@ public class Player : MonoBehaviour
                     if (GameObject.Find("GregoryHeart").GetComponent<HeartCode>().input == false)
                     {
                         GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(1f);
-
+                        /*
                         Laser laser_object = Instantiate(laserPrefab, transform.position, Quaternion.identity);
                         laser_object.GetComponent<Laser>().weak = true;
                         if (move == true) laser_object.GetComponent<Laser>().weak = false;
                         move = false;
+                        */
 
                         GameObject.Find("GregoryHeart").GetComponent<HeartCode>().input = true;
                         GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beat = true;
