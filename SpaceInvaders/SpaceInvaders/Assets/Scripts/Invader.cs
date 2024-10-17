@@ -12,6 +12,7 @@ public class Invader : MonoBehaviour
 {
     public Sprite[] animationSprites = new Sprite[2];
     public float animationTime;
+    public GameObject explosion;
 
     SpriteRenderer spRend;
     int animationFrame;
@@ -47,6 +48,7 @@ public class Invader : MonoBehaviour
             GameManager.Instance.OnInvaderKilled(this);
             GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenFlash(0.1f);
             GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(1);
+            Instantiate(explosion, transform.position + new Vector3(Random.Range(-0.25f,0.25f), Random.Range(-0.25f, 0.25f),0), Quaternion.identity);
         }
         else if(collision.gameObject.layer == LayerMask.NameToLayer("Boundary")) //nått nedre kanten
         {

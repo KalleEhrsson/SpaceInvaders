@@ -8,12 +8,13 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Laser laserPrefab;
-    Laser laser;
    // float speed = 10f;
     public Animator anim;
     float x_position = 0f;
     public bool left = false;
     public bool right = false;
+    public bool shoot = false;
+    public bool move = false;
 
     // Update is called once per frame
     void FixedUpdate()
@@ -42,35 +43,74 @@ public class Player : MonoBehaviour
         }
         */
 
-        if (GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beattimer > 0f)
+        if (Input.GetKey(KeyCode.A))
         {
-            if (Input.GetKey(KeyCode.A))
+            if (left == false)
             {
-                if (GameObject.Find("GregoryHeart").GetComponent<HeartCode>().input == false && left == false)
+                if (GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beattimer > 0f)
                 {
-                    x_position -= 5f;
-                    GameObject.Find("GregoryHeart").GetComponent<HeartCode>().input = true;
+                    if (GameObject.Find("GregoryHeart").GetComponent<HeartCode>().input == false)
+                    {
+                        x_position -= 5f;
+                        GameObject.Find("GregoryHeart").GetComponent<HeartCode>().input = true;
+                        GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beat = true;
+                        GameObject.Find("GregoryHeart").GetComponent<HeartCode>().current_line = 0;
+                        GameObject.Find("GregoryHeart").GetComponent<HeartCode>().scale = 1.5f;
+                        left = true;
+                        move = true;
+                    }
+                }
+                else
+                {
+                    GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(0.5f);
+                    GameObject.Find("GregoryHeart").GetComponent<HeartCode>().current_line = 0;
+                    GameObject.Find("GregoryHeart").GetComponent<HeartCode>().scale = 0.75f;
+                    GameObject.Find("GregoryHeart").GetComponent<HeartCode>().failtimer = 15f;
+                    GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beat = false;
+                    GameObject.Find("GregoryHeart").GetComponent<HeartCode>().hurt.Play();
                     left = true;
+                    move = true;
                 }
             }
-            else
-            {
-                left = false;
-            }
+        }
+        else
+        {
+            left = false;
+        }
 
-            if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
+        {
+            if (right == false)
             {
-                if (GameObject.Find("GregoryHeart").GetComponent<HeartCode>().input == false && right == false)
+                if (GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beattimer > 0f)
                 {
-                    x_position += 5f;
-                    GameObject.Find("GregoryHeart").GetComponent<HeartCode>().input = true;
+                    if(GameObject.Find("GregoryHeart").GetComponent<HeartCode>().input == false)
+                    {
+                        x_position += 5f;
+                        GameObject.Find("GregoryHeart").GetComponent<HeartCode>().input = true;
+                        GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beat = true;
+                        GameObject.Find("GregoryHeart").GetComponent<HeartCode>().current_line = 0;
+                        GameObject.Find("GregoryHeart").GetComponent<HeartCode>().scale = 1.5f;
+                        right = true;
+                        move = true;
+                    }
+                }
+                else
+                {
+                    GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(0.5f);
+                    GameObject.Find("GregoryHeart").GetComponent<HeartCode>().current_line = 0;
+                    GameObject.Find("GregoryHeart").GetComponent<HeartCode>().scale = 0.75f;
+                    GameObject.Find("GregoryHeart").GetComponent<HeartCode>().failtimer = 15f;
+                    GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beat = false;
+                    GameObject.Find("GregoryHeart").GetComponent<HeartCode>().hurt.Play();
                     right = true;
+                    move = true;
                 }
             }
-            else
-            {
-                right = false;
-            }
+        }
+        else
+        {
+            right = false;
         }
 
         position = new Vector3(position.x + ((x_position - position.x) * 10f * Time.deltaTime), position.y, position.z);
@@ -82,11 +122,45 @@ public class Player : MonoBehaviour
 
         transform.position = position;
 
-        if (Input.GetKeyDown(KeyCode.Space) && laser == null)
+        if (Input.GetKey(KeyCode.Space))
         {
-            GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(0.5f);
+            if (shoot == false)
+            {
+                if (GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beattimer > 0f)
+                {
+                    if (GameObject.Find("GregoryHeart").GetComponent<HeartCode>().input == false)
+                    {
+                        GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(0.5f);
 
-            laser = Instantiate(laserPrefab, transform.position, Quaternion.identity);
+                        Laser laser_object = Instantiate(laserPrefab, transform.position, Quaternion.identity);
+                        laser_object.GetComponent<Laser>().weak = true;
+                        if (move == true) laser_object.GetComponent<Laser>().weak = false;
+                        move = false;
+
+                        GameObject.Find("GregoryHeart").GetComponent<HeartCode>().input = true;
+                        GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beat = true;
+                        GameObject.Find("GregoryHeart").GetComponent<HeartCode>().current_line = 0;
+                        GameObject.Find("GregoryHeart").GetComponent<HeartCode>().scale = 1.5f;
+
+                        shoot = true;
+                    }
+                }
+                else
+                {
+                    GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(0.5f);
+                    GameObject.Find("GregoryHeart").GetComponent<HeartCode>().current_line = 0;
+                    GameObject.Find("GregoryHeart").GetComponent<HeartCode>().scale = 0.75f;
+                    GameObject.Find("GregoryHeart").GetComponent<HeartCode>().failtimer = 15f;
+                    GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beat = false;
+                    GameObject.Find("GregoryHeart").GetComponent<HeartCode>().hurt.Play();
+
+                    shoot = true;
+                }
+            }
+        }
+        else
+        {
+            shoot = false;
         }
     }
 
