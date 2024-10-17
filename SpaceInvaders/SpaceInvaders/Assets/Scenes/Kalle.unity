@@ -518,7 +518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af000e5cc09f4d44866796164e066bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserPrefab: {fileID: -3490217107782599277, guid: e5347bc7602f3c44cbb2afa345d49cbd, type: 3}
+  laserPrefab: {fileID: -2573330924958706025, guid: 49afc2eac5d010d40a177dfb34faaadb, type: 3}
 --- !u!61 &449935949
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -760,7 +760,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 511e3715911d91c479ad11014e43ae9a, type: 3}
+  m_Script: {fileID: 11500000, guid: f29b9c057366f51429f5711985b056ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &673213887
