@@ -36,7 +36,6 @@ public class Laser : Projectile
     }
 
     void Update()
-    {/*
     {
         speed = 80f;
         if (weak == true)
@@ -50,15 +49,15 @@ public class Laser : Projectile
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(weak == true) CheckCollision(collision);
+        if (weak == true) CheckCollision(collision);
     }
 
     void CheckCollision(Collider2D collision)
     {
         Bunker bunker = collision.gameObject.GetComponent<Bunker>();
 
-            //Om det inte �r en bunker vi tr�ffat s� ska skottet f�rsvinna.
-        if(bunker == null) 
+        //Om det inte �r en bunker vi tr�ffat s� ska skottet f�rsvinna.
+        if (bunker == null)
         {
             Destroy(gameObject);
         }

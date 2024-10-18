@@ -856,7 +856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af000e5cc09f4d44866796164e066bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserPrefab: {fileID: -3490217107782599277, guid: e5347bc7602f3c44cbb2afa345d49cbd, type: 3}
+  laserPrefab: {fileID: -3490217107782599277, guid: 49afc2eac5d010d40a177dfb34faaadb, type: 3}
   left: 0
   right: 0
   shoot: 0
