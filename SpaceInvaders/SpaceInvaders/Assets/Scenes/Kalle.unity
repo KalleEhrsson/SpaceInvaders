@@ -792,6 +792,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88a1f02d20365f147bfa0798e5d0b70e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 519420031}
+  zoomSpeed: 2
+  targetZoomSize: 3
+  originalCameraPosition: {x: 0, y: 0, z: 0}
+  zoomCameraOffset: {x: 0, y: 0, z: -10}
 --- !u!4 &673213889
 Transform:
   m_ObjectHideFlags: 0
@@ -1538,8 +1543,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab:
-  - {fileID: 2686874742132834342, guid: 1ba4f5c3d60001e468d99406945e6574, type: 3}
-  - {fileID: 2686874742132834342, guid: 1ba4f5c3d60001e468d99406945e6574, type: 3}
+  - {fileID: 2218134995116707916, guid: 1ba4f5c3d60001e468d99406945e6574, type: 3}
+  - {fileID: 2218134995116707916, guid: 1ba4f5c3d60001e468d99406945e6574, type: 3}
   - {fileID: -4000719392325896428, guid: b14d1f0b9cb44114498224ac5d475936, type: 3}
   - {fileID: -4000719392325896428, guid: b14d1f0b9cb44114498224ac5d475936, type: 3}
   - {fileID: -3355645090637668525, guid: c28b28934bb25ba4bb11e8a91370811c, type: 3}

@@ -19,6 +19,8 @@ public class Bunker : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Missile") || other.gameObject.layer == LayerMask.NameToLayer("Invader"))
         {
 
+            GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(0.5f);
+
             //Ändrar färgen beroende på antal träffar.
             nrOfHits++;
             Color oldColor = spRend.color;

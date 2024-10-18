@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:SpaceInvaders/SpaceInvaders/Assets/Sprites/Laser5-Sheet (1).png.meta
 guid: ae9290c2291972d43a0697c7d3621993
+========
+guid: f5dbc40839d5c204dacf7718b7d5aeee
+>>>>>>>> main:SpaceInvaders/SpaceInvaders/Assets/Sprites/Shoot.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

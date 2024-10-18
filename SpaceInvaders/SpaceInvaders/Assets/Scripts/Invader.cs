@@ -13,7 +13,8 @@ public class Invader : MonoBehaviour
 {
     public Sprite[] animationSprites = new Sprite[2];
     public float animationTime;
-    public ParticleSystem deathEffectPrefab;
+    public GameObject explosion;
+    public AudioSource death;
 
     SpriteRenderer spRend;
     int animationFrame;
@@ -30,7 +31,7 @@ public class Invader : MonoBehaviour
         InvokeRepeating(nameof(AnimateSprite), animationTime, animationTime);
     }
 
-    //pandlar mellan olika sprited för att skapa en animation
+    //pandlar mellan olika sprited fï¿½r att skapa en animation
     private void AnimateSprite()
     {
         animationFrame++;
@@ -45,15 +46,14 @@ public class Invader : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Laser"))
         {
-            //Invadern dör
+            //Invadern dï¿½r
             GameManager.Instance.OnInvaderKilled(this);
-            
-            //Skapar, spelar och tar bort partiklar
-            ParticleSystem dieEffect = Instantiate(deathEffectPrefab, transform.position, Quaternion.identity);
-            dieEffect.Play();
-            Destroy(dieEffect.gameObject, dieEffect.main.duration);
+            GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenFlash(0.1f);
+            GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(2);
+            death.Play();
+            Instantiate(explosion, transform.position + new Vector3(Random.Range(-0.25f,0.25f), Random.Range(-0.25f, 0.25f),0), Quaternion.identity);
         }
-        else if (collision.gameObject.layer == LayerMask.NameToLayer("Boundary")) //nått nedre kanten
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("Boundary")) //nï¿½tt nedre kanten
         {
             GameManager.Instance.OnBoundaryReached();
         }

@@ -12,6 +12,7 @@ public class Laser : Projectile
 
     SpriteRenderer spriteRenderer;
     int animationFrame;
+    public bool weak = false;
 
     private void Awake()
     {
@@ -35,20 +36,28 @@ public class Laser : Projectile
     }
 
     void Update()
+    {/*
     {
-        transform.position += speed * Time.deltaTime * direction;
+        speed = 80f;
+        if (weak == true)
+        {
+            speed = 40f;
+            transform.localScale = new Vector3(0.25f, 0.25f, 1f);
+        }
+
+       */ transform.position += speed * Time.deltaTime * direction;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        CheckCollision(collision);
+        if(weak == true) CheckCollision(collision);
     }
 
     void CheckCollision(Collider2D collision)
     {
         Bunker bunker = collision.gameObject.GetComponent<Bunker>();
 
-            //Om det inte är en bunker vi träffat så ska skottet försvinna.
+            //Om det inte ï¿½r en bunker vi trï¿½ffat sï¿½ ska skottet fï¿½rsvinna.
         if(bunker == null) 
         {
             Destroy(gameObject);
