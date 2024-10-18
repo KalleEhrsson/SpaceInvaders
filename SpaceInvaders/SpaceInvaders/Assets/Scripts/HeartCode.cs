@@ -19,11 +19,12 @@ public class HeartCode : MonoBehaviour
     float[] line_y = new float[18];
     public AudioSource heartbeat;
     public AudioSource hurt;
+    public AudioSource music;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        music.Play();
     }
 
     // Update is called once per frame

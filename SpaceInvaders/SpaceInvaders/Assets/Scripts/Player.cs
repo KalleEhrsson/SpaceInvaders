@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     public bool move = false;
     public float x_scale = 0f;
     public float y_scale = 0f;
+    public AudioSource shoot_sound;
+    public AudioSource move_sound;
 
     // Update is called once per frame
     void FixedUpdate()
@@ -56,6 +58,7 @@ public class Player : MonoBehaviour
                         GameObject.Find("GregoryHeart").GetComponent<HeartCode>().current_line = 0;
                         GameObject.Find("GregoryHeart").GetComponent<HeartCode>().scale = 1.5f;
                         GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(0.5f);
+                        move_sound.Play();
                         x_scale = 1.5f;
                         y_scale = 0.5f;
                         left = true;
@@ -94,6 +97,7 @@ public class Player : MonoBehaviour
                         GameObject.Find("GregoryHeart").GetComponent<HeartCode>().current_line = 0;
                         GameObject.Find("GregoryHeart").GetComponent<HeartCode>().scale = 1.5f;
                         GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(0.5f);
+                        move_sound.Play();
                         x_scale = 1.5f;
                         y_scale = 0.5f;
                         right = true;
@@ -136,17 +140,17 @@ public class Player : MonoBehaviour
                     if (GameObject.Find("GregoryHeart").GetComponent<HeartCode>().input == false)
                     {
                         GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(1f);
-                        /*
+
                         Laser laser_object = Instantiate(laserPrefab, transform.position, Quaternion.identity);
                         laser_object.GetComponent<Laser>().weak = true;
                         if (move == true) laser_object.GetComponent<Laser>().weak = false;
                         move = false;
-                        */
 
                         GameObject.Find("GregoryHeart").GetComponent<HeartCode>().input = true;
                         GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beat = true;
                         GameObject.Find("GregoryHeart").GetComponent<HeartCode>().current_line = 0;
                         GameObject.Find("GregoryHeart").GetComponent<HeartCode>().scale = 1.5f;
+                        shoot_sound.Play();
                         x_scale = 0.5f;
                         y_scale = 1.5f;
 
