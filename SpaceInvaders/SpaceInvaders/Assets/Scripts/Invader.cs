@@ -15,6 +15,8 @@ public class Invader : MonoBehaviour
     public float animationTime;
     public GameObject explosion;
     public AudioSource death;
+    public int invaderType;
+
 
     SpriteRenderer spRend;
     int animationFrame;

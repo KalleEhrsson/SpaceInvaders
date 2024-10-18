@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Timeline.Actions;
+using TMPro;
 
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
@@ -17,7 +18,9 @@ public class GameManager : MonoBehaviour
     public float targetZoomSize = 3f; 
     private float originalZoomSize;  
     public Vector3 originalCameraPosition; 
-    public Vector3 zoomCameraOffset = new Vector3(0f, 0f, -10f); 
+    public Vector3 zoomCameraOffset = new Vector3(0f, 0f, -10f);
+
+    public TextMeshProUGUI scoreText;
     public int lives { get; private set; } = 3;
 
     public int score { get; private set; } = 0;
@@ -97,10 +100,17 @@ public class GameManager : MonoBehaviour
         invaders.gameObject.SetActive(false);
     }
 
-    private void SetScore(int score)
+    private void SetScore(int playerScore)
     {
+        score = playerScore;
+        scoreText.text = $"Score: {score}";
 
+        if (score > 0 && score % 100 == 0)
+        {
+            invaders.IncreaseSpeed();
+        }
     }
+
 
     private void SetLives(int lives)
     {
@@ -177,8 +187,18 @@ public class GameManager : MonoBehaviour
     {
         invader.gameObject.SetActive(false);
 
-
-
+        if (invader.invaderType == 1)
+        {
+            SetScore(score + 10);
+        }
+        if (invader.invaderType == 2)
+        {
+            SetScore(score + 20);
+        }
+        if (invader.invaderType == 3)
+        {
+            SetScore(score + 30);
+        }
         if (invaders.GetInvaderCount() == 0)
         {
             NewRound();
