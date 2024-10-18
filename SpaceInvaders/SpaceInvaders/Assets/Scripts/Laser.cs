@@ -12,6 +12,7 @@ public class Laser : Projectile
 
     SpriteRenderer spriteRenderer;
     int animationFrame;
+    public bool weak = false;
 
     private void Awake()
     {
@@ -36,6 +37,7 @@ public class Laser : Projectile
 
     void Update()
     {/*
+    {
         speed = 80f;
         if (weak == true)
         {
@@ -48,7 +50,7 @@ public class Laser : Projectile
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-     //   if(weak == true) CheckCollision(collision);
+        if(weak == true) CheckCollision(collision);
     }
 
     void CheckCollision(Collider2D collision)
