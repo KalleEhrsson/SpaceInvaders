@@ -45,7 +45,7 @@ public class Laser : Projectile
             transform.localScale = new Vector3(0.25f, 0.25f, 1f);
         }
 
-       */ transform.position += speed * Time.deltaTime * direction;
+        transform.position += speed * Time.deltaTime * direction;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
