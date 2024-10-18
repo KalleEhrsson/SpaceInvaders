@@ -1302,7 +1302,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88a1f02d20365f147bfa0798e5d0b70e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   mainCamera: {fileID: 519420031}
+=======
+  mainCamera: {fileID: 0}
+>>>>>>> Stashed changes
   zoomSpeed: 2
   targetZoomSize: 3
   originalCameraPosition: {x: 0, y: 0, z: 0}
