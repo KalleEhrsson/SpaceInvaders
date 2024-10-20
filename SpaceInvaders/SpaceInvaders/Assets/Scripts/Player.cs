@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
         }
         */
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             if (left == false)
             {
@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
             left = false;
         }
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             if (right == false)
             {

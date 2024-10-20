@@ -173,8 +173,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationSprites:
-  - {fileID: 21300000, guid: 9add71cd29b1cab4d82b70d6454f3784, type: 3}
-  - {fileID: 21300000, guid: 1d7f0c869d2762f42b2dbfc34045c3d0, type: 3}
+  - {fileID: 841954766, guid: 3d1aa05f4e17d5e40bbcb7e45791dd89, type: 3}
+  - {fileID: -1084973173, guid: 3d1aa05f4e17d5e40bbcb7e45791dd89, type: 3}
   animationTime: 1
   explosion: {fileID: 7622750493054582692, guid: 76224a3b363afff44b6e91cf3e89cfd0, type: 3}
   death: {fileID: 6852485216293180381}

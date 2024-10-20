@@ -95,7 +95,7 @@ public class HeartCode : MonoBehaviour
             heartbeat.Play();
 
             timer = 60/bpm*60f;
-            beattimer = 15f;
+            beattimer = 18f;
         }
 
         Debug.Log(failtimer);
