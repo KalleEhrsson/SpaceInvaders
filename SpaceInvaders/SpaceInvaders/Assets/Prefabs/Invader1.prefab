@@ -178,6 +178,7 @@ MonoBehaviour:
   animationTime: 1
   explosion: {fileID: 7622750493054582692, guid: 76224a3b363afff44b6e91cf3e89cfd0, type: 3}
   death: {fileID: 4129034444548134929}
+  invaderType: 1
 --- !u!82 &4129034444548134929
 AudioSource:
   m_ObjectHideFlags: 0

@@ -127,7 +127,7 @@ public class Player : MonoBehaviour
         Vector3 leftedge = Camera.main.ViewportToWorldPoint(Vector3.zero);
         Vector3 rightedge = Camera.main.ViewportToWorldPoint(Vector3.right);
 
-        position.x = Mathf.Clamp(position.x, leftedge.x, rightedge.x);
+        position.x = Mathf.Clamp(position.x, leftedge.x + 1, rightedge.x - 1);
 
         transform.position = position;
 

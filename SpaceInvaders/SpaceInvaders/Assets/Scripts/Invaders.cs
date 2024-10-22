@@ -11,6 +11,8 @@ public class Invaders : MonoBehaviour
     private int row = 5;
     private int col = 11;
 
+    private float speed = 1f;
+
     private Vector3 initialPosition;
     private Vector3 direction = Vector3.right;
 
@@ -135,5 +137,10 @@ public class Invaders : MonoBehaviour
         Vector3 position = transform.position;
         position.y -= 1f;
         transform.position = position;
+    }
+
+    public void IncreaseSpeed()
+    {
+        speed += 2f;
     }
 }

@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 109574521}
   - component: {fileID: 109574520}
   - component: {fileID: 109574519}
-  - component: {fileID: 109574518}
+  - component: {fileID: 109574522}
   m_Layer: 0
   m_Name: Bunker
   m_TagString: Untagged
@@ -152,24 +152,12 @@ Transform:
   m_GameObject: {fileID: 109574516}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.300867, y: -8.30152, z: 0.08519437}
+  m_LocalPosition: {x: -12.300867, y: -8.30152, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 276287576}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &109574518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 109574516}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 414b87f074e4754479169d2e1933b802, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &109574519
 Rigidbody2D:
   serializedVersion: 4
@@ -294,6 +282,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &109574522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109574516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 414b87f074e4754479169d2e1933b802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &276287575
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,7 +518,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af000e5cc09f4d44866796164e066bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserPrefab: {fileID: -3490217107782599277, guid: e5347bc7602f3c44cbb2afa345d49cbd, type: 3}
+  laserPrefab: {fileID: -3490217107782599277, guid: 49afc2eac5d010d40a177dfb34faaadb, type: 3}
+  left: 0
+  right: 0
+  shoot: 0
+  move: 0
+  x_scale: 0
+  y_scale: 0
 --- !u!61 &449935949
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -669,6 +675,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -750,6 +757,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f29b9c057366f51429f5711985b056ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &673213887
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,6 +798,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88a1f02d20365f147bfa0798e5d0b70e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 519420031}
+  zoomSpeed: 2
+  targetZoomSize: 3
+  originalCameraPosition: {x: 0, y: 0, z: 0}
+  zoomCameraOffset: {x: 0, y: 0, z: -10}
 --- !u!4 &673213889
 Transform:
   m_ObjectHideFlags: 0
@@ -991,7 +1015,7 @@ Transform:
   m_GameObject: {fileID: 1121096060}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 13.2075405, z: 0}
+  m_LocalPosition: {x: 0.1, y: 13.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1088,7 +1112,7 @@ GameObject:
   - component: {fileID: 1351142253}
   - component: {fileID: 1351142252}
   - component: {fileID: 1351142251}
-  - component: {fileID: 1351142250}
+  - component: {fileID: 1351142254}
   m_Layer: 0
   m_Name: Bunker (1)
   m_TagString: Untagged
@@ -1105,24 +1129,12 @@ Transform:
   m_GameObject: {fileID: 1351142248}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.300868, y: -8.30152, z: 0.08519437}
+  m_LocalPosition: {x: -2.44, y: -8.30152, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 276287576}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1351142250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1351142248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 414b87f074e4754479169d2e1933b802, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &1351142251
 Rigidbody2D:
   serializedVersion: 4
@@ -1247,6 +1259,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1351142254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351142248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 414b87f074e4754479169d2e1933b802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1356614783
 GameObject:
   m_ObjectHideFlags: 0
@@ -1259,7 +1283,7 @@ GameObject:
   - component: {fileID: 1356614788}
   - component: {fileID: 1356614787}
   - component: {fileID: 1356614786}
-  - component: {fileID: 1356614785}
+  - component: {fileID: 1356614789}
   m_Layer: 0
   m_Name: Bunker (2)
   m_TagString: Untagged
@@ -1276,24 +1300,12 @@ Transform:
   m_GameObject: {fileID: 1356614783}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.599132, y: -8.30152, z: 0.08519437}
+  m_LocalPosition: {x: 7.599132, y: -8.30152, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 276287576}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1356614785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1356614783}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 414b87f074e4754479169d2e1933b802, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &1356614786
 Rigidbody2D:
   serializedVersion: 4
@@ -1418,6 +1430,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1356614789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356614783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 414b87f074e4754479169d2e1933b802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2002710869
 GameObject:
   m_ObjectHideFlags: 0
@@ -1444,7 +1468,7 @@ Transform:
   m_GameObject: {fileID: 2002710869}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -17.4, z: 0}
+  m_LocalPosition: {x: 0.2, y: -17.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1525,8 +1549,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab:
-  - {fileID: 2686874742132834342, guid: 1ba4f5c3d60001e468d99406945e6574, type: 3}
-  - {fileID: 2686874742132834342, guid: 1ba4f5c3d60001e468d99406945e6574, type: 3}
+  - {fileID: 2218134995116707916, guid: 1ba4f5c3d60001e468d99406945e6574, type: 3}
+  - {fileID: 2218134995116707916, guid: 1ba4f5c3d60001e468d99406945e6574, type: 3}
   - {fileID: -4000719392325896428, guid: b14d1f0b9cb44114498224ac5d475936, type: 3}
   - {fileID: -4000719392325896428, guid: b14d1f0b9cb44114498224ac5d475936, type: 3}
   - {fileID: -3355645090637668525, guid: c28b28934bb25ba4bb11e8a91370811c, type: 3}
