@@ -100,10 +100,10 @@ public class GameManager : MonoBehaviour
         invaders.gameObject.SetActive(false);
     }
 
-    private void SetScore(int playerScore)
+    public void SetScore(int playerScore)
     {
         score = playerScore;
-        scoreText.text = $"Score: {score}";
+        scoreText.text = $"{score}";
 
         if (score > 0 && score % 100 == 0)
         {

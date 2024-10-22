@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3d1aa05f4e17d5e40bbcb7e45791dd89
+guid: 5a8fd2b63153bc64798ee6b79f1987d8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TrueEnemy-Sheet_0
+      name: TrueEnemy-Sheet-Sheet-export-export_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f6bdf8757e208943a12c3b898127075
-      internalID: -2120618129
+      spriteID: 55b46f8fbbd6e754db1d9dfe0866dac7
+      internalID: -936459949
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TrueEnemy-Sheet_1
+      name: TrueEnemy-Sheet-Sheet-export-export_1
       rect:
         serializedVersion: 2
         x: 64
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e0534353cb090624c81d3e2187410fb5
-      internalID: 841954766
+      spriteID: b1d9664798ee73d4e8043ee9842d2c25
+      internalID: 1417526744
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TrueEnemy-Sheet_2
+      name: TrueEnemy-Sheet-Sheet-export-export_2
       rect:
         serializedVersion: 2
         x: 128
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5859b9ef2c890674c86727c7d04f2ecb
-      internalID: -271274718
+      spriteID: 2b37e6afabd4073499793dbff9124c19
+      internalID: -2109843894
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TrueEnemy-Sheet_3
+      name: TrueEnemy-Sheet-Sheet-export-export_3
       rect:
         serializedVersion: 2
         x: 192
@@ -200,8 +200,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d7fc6ab4cb2ab847a15f9055b911466
-      internalID: -1084973173
+      spriteID: a6f82205c57852845b58cfa37fb052d7
+      internalID: 964095744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TrueEnemy-Sheet-Sheet-export-export_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e4bd6dbe4e128747912be8fa7e6ab49
+      internalID: 890172116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TrueEnemy-Sheet-Sheet-export-export_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c37016e938b53af4a838f70618f345d4
+      internalID: -1851747404
       vertices: []
       indices: 
       edges: []
@@ -217,10 +259,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      TrueEnemy-Sheet_0: -2120618129
-      TrueEnemy-Sheet_1: 841954766
-      TrueEnemy-Sheet_2: -271274718
-      TrueEnemy-Sheet_3: -1084973173
+      TrueEnemy-Sheet-Sheet-export-export_0: -936459949
+      TrueEnemy-Sheet-Sheet-export-export_1: 1417526744
+      TrueEnemy-Sheet-Sheet-export-export_2: -2109843894
+      TrueEnemy-Sheet-Sheet-export-export_3: 964095744
+      TrueEnemy-Sheet-Sheet-export-export_4: 890172116
+      TrueEnemy-Sheet-Sheet-export-export_5: -1851747404
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

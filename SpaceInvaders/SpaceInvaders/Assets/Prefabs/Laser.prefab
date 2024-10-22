@@ -172,9 +172,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: -421018638, guid: ae9290c2291972d43a0697c7d3621993, type: 3}
+  - {fileID: -60277653, guid: ae9290c2291972d43a0697c7d3621993, type: 3}
+  - {fileID: 1071550188, guid: ae9290c2291972d43a0697c7d3621993, type: 3}
   animationTime: 0
   weak: 0
 --- !u!114 &4778995549039809072

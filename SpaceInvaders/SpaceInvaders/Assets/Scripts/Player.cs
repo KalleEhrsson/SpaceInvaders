@@ -73,6 +73,7 @@ public class Player : MonoBehaviour
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().failtimer = 15f;
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beat = false;
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().hurt.Play();
+                    GameObject.Find("GameManager").GetComponent<GameManager>().SetScore(GameObject.Find("GameManager").GetComponent<GameManager>().score - 30);
                     left = true;
                     move = true;
                 }
@@ -112,6 +113,7 @@ public class Player : MonoBehaviour
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().failtimer = 15f;
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beat = false;
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().hurt.Play();
+                    GameObject.Find("GameManager").GetComponent<GameManager>().SetScore(GameObject.Find("GameManager").GetComponent<GameManager>().score - 30);
                     right = true;
                     move = true;
                 }
@@ -141,7 +143,7 @@ public class Player : MonoBehaviour
                     {
                         GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(1f);
 
-                        Laser laser_object = Instantiate(laserPrefab, transform.position, Quaternion.identity);
+                        Laser laser_object = Instantiate(laserPrefab, transform.position + new Vector3(0,0.5f,0), Quaternion.identity);
                         laser_object.GetComponent<Laser>().weak = true;
                         if (move == true) laser_object.GetComponent<Laser>().weak = false;
                         move = false;
@@ -165,6 +167,7 @@ public class Player : MonoBehaviour
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().failtimer = 15f;
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beat = false;
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().hurt.Play();
+                    GameObject.Find("GameManager").GetComponent<GameManager>().SetScore(GameObject.Find("GameManager").GetComponent<GameManager>().score - 30);
 
                     shoot = true;
                 }

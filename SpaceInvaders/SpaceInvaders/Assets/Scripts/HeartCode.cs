@@ -98,8 +98,6 @@ public class HeartCode : MonoBehaviour
             beattimer = 15f;
         }
 
-        Debug.Log(failtimer);
-
         transform.localScale = new Vector3(scale, scale, 1);
     }
 }
