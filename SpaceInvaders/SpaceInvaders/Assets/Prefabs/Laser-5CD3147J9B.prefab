@@ -103,7 +103,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -421018638, guid: ae9290c2291972d43a0697c7d3621993, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f5dbc40839d5c204dacf7718b7d5aeee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -150,7 +150,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.2, y: 3.2}
+    oldSize: {x: 6, y: 6}
     newSize: {x: 3.2, y: 3.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -172,9 +172,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationSprites:
-  - {fileID: 1468278822, guid: c85f799ccb6a826449385467f53f5753, type: 3}
-  - {fileID: -1146405822, guid: c85f799ccb6a826449385467f53f5753, type: 3}
-  - {fileID: -1751442045, guid: c85f799ccb6a826449385467f53f5753, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   animationTime: 0
   weak: 0
 --- !u!114 &4778995549039809072
