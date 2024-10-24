@@ -6,11 +6,15 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Bunker : MonoBehaviour
 {
+
+    public Sprite[] pianoSprites;
+
     int nrOfHits = 0;
     SpriteRenderer spRend;
     private void Awake()
     {
         spRend = GetComponent<SpriteRenderer>();
+        spRend.sprite = pianoSprites[0];
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -20,7 +24,7 @@ public class Bunker : MonoBehaviour
         {
 
             GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(0.5f);
-
+            /*
             //Ändrar färgen beroende på antal träffar.
             nrOfHits++;
             Color oldColor = spRend.color;
@@ -28,8 +32,17 @@ public class Bunker : MonoBehaviour
             Color newColor = new Color(oldColor.r +(nrOfHits*0.1f), oldColor.g + (nrOfHits * 0.1f), oldColor.b + (nrOfHits * 0.1f));
             
             spRend.color = newColor;
-            
-            if (nrOfHits == 4)
+            */
+            nrOfHits++;
+            if(nrOfHits == 1)
+            {
+                spRend.sprite = pianoSprites[1];
+            }
+            if(nrOfHits == 2)
+            {
+                spRend.sprite = pianoSprites[2];
+            }
+            if (nrOfHits == 3)
             {
                 gameObject.SetActive(false);
             }
