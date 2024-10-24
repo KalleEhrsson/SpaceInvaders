@@ -34,19 +34,19 @@ public class Invaders : MonoBehaviour
     {
         for(int r = 0; r < row; r++)
         {
-            float width = 2f * (col - 1);
-            float height = 2f * (row - 1);
+            float width = 2.5f * (col - 1);
+            float height = 2.5f * (row - 1);
 
             //för att centerar invaders
             Vector2 centerOffset = new Vector2(-width * 0.5f, -height * 0.5f);
-            Vector3 rowPosition = new Vector3(centerOffset.x, (2f * r) + centerOffset.y, 0f);
+            Vector3 rowPosition = new Vector3(centerOffset.x, (2.5f * r) + centerOffset.y, 0f);
             
             for (int c = 0; c < col; c++)
             {
                 Invader tempInvader = Instantiate(prefab[r], transform);
 
                 Vector3 position = rowPosition;
-                position.x += 2f * c;
+                position.x += 2.5f * c;
                 tempInvader.transform.localPosition = position;
             }
         }

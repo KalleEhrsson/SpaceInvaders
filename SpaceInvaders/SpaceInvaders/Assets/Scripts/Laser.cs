@@ -38,10 +38,11 @@ public class Laser : Projectile
     void Update()
     {
         speed = 80f;
+        transform.localScale = new Vector3(2f,2f, 1f);
         if (weak == true)
         {
             speed = 40f;
-            transform.localScale = new Vector3(0.25f, 0.25f, 1f);
+            transform.localScale = new Vector3(0.75f,0.75f, 1f);
         }
 
         transform.position += speed * Time.deltaTime * direction;
@@ -49,7 +50,17 @@ public class Laser : Projectile
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (weak == true) CheckCollision(collision);
+        if (weak == true)
+        {
+            CheckCollision(collision);
+        }
+        else
+        {
+            if(collision.tag == "Borders")
+            {
+                CheckCollision(collision);
+            }
+        }
     }
 
     void CheckCollision(Collider2D collision)

@@ -100,10 +100,10 @@ public class GameManager : MonoBehaviour
         invaders.gameObject.SetActive(false);
     }
 
-    private void SetScore(int playerScore)
+    public void SetScore(int playerScore)
     {
         score = playerScore;
-        scoreText.text = $"Score: {score}";
+        scoreText.text = $"{score}";
 
         if (score > 0 && score % 100 == 0)
         {
@@ -178,7 +178,7 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("start cutscene");
 
-        // vänta på cutscene ska finish sedan logik för att reseta eller få en restart button
+        // vï¿½nta pï¿½ cutscene ska finish sedan logik fï¿½r att reseta eller fï¿½ en restart button
         yield return new WaitForSeconds(10f);
     }
 
