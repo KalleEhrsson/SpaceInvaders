@@ -9,7 +9,7 @@ public class ChangeScene : MonoBehaviour
   public void PlayGame()
     {
         print("Play knappen funkar");
-        SceneManager.LoadSceneAsync(1);
+        SceneManager.LoadSceneAsync("MainScene");
     }
 
     public void QuitGame()
