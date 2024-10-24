@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().failtimer = 15f;
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beat = false;
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().hurt.Play();
-                    GameObject.Find("GameManager").GetComponent<GameManager>().SetScore(GameObject.Find("GameManager").GetComponent<GameManager>().score - 30);
+                    GameObject.Find("GameManager").GetComponent<GameManager>().SetScore(GameObject.Find("GameManager").GetComponent<GameManager>().score - 100);
                     left = true;
                     move = true;
                 }
@@ -113,7 +113,7 @@ public class Player : MonoBehaviour
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().failtimer = 15f;
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beat = false;
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().hurt.Play();
-                    GameObject.Find("GameManager").GetComponent<GameManager>().SetScore(GameObject.Find("GameManager").GetComponent<GameManager>().score - 30);
+                    GameObject.Find("GameManager").GetComponent<GameManager>().SetScore(GameObject.Find("GameManager").GetComponent<GameManager>().score - 100);
                     right = true;
                     move = true;
                 }
@@ -167,7 +167,7 @@ public class Player : MonoBehaviour
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().failtimer = 15f;
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beat = false;
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().hurt.Play();
-                    GameObject.Find("GameManager").GetComponent<GameManager>().SetScore(GameObject.Find("GameManager").GetComponent<GameManager>().score - 30);
+                    GameObject.Find("GameManager").GetComponent<GameManager>().SetScore(GameObject.Find("GameManager").GetComponent<GameManager>().score - 100);
 
                     shoot = true;
                 }

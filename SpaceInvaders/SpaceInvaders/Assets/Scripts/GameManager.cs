@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Timeline.Actions;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
@@ -19,6 +20,8 @@ public class GameManager : MonoBehaviour
     private float originalZoomSize;  
     public Vector3 originalCameraPosition; 
     public Vector3 zoomCameraOffset = new Vector3(0f, 0f, -10f);
+    float timer = -1;
+    float deathtimer = -1;
 
     public TextMeshProUGUI scoreText;
     public int lives { get; private set; } = 3;
@@ -64,6 +67,14 @@ public class GameManager : MonoBehaviour
         {
             NewGame();
         }
+
+        timer -= 10f;
+        deathtimer -= 10f;
+
+        if (timer == 0f) NewRound();
+        if (deathtimer == 0f) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (score < 0) SetScore(0);
+
     }
 
     private void NewGame()
@@ -76,22 +87,25 @@ public class GameManager : MonoBehaviour
 
     private void NewRound()
     {
-        invaders.ResetInvaders();
-        invaders.gameObject.SetActive(true);
-
-        for (int i = 0; i < bunkers.Length; i++)
+        if (timer <= 0f)
         {
-            bunkers[i].ResetBunker();
-        }
+            invaders.ResetInvaders();
+            invaders.gameObject.SetActive(true);
 
-        Respawn();
+            for (int i = 0; i < bunkers.Length; i++)
+            {
+                bunkers[i].ResetBunker();
+            }
+
+            Respawn();
+        }
     }
 
     private void Respawn()
     {
         Vector3 position = player.transform.position;
         position.x = 0f;
-        player.transform.position = position;
+        //player.transform.position = position;
         player.gameObject.SetActive(true);
     }
 
@@ -150,6 +164,7 @@ public class GameManager : MonoBehaviour
         }
 
         StartCoroutine(SmoothZoomInOnPlayer(player));
+        deathtimer = 1500f;
     }
 
     private IEnumerator SmoothZoomInOnPlayer(Player player)
@@ -201,7 +216,7 @@ public class GameManager : MonoBehaviour
         }
         if (invaders.GetInvaderCount() == 0)
         {
-            NewRound();
+            timer = 350f;
         }
     }
 
