@@ -25,7 +25,7 @@ public class Playbutton : MonoBehaviour
         animationFrame++;
         if (animationFrame >= animationSprites.Length)
         {
-            animationFrame = 0;
+            animationFrame = 1;
         }
         spRend.sprite = animationSprites[animationFrame];
     }

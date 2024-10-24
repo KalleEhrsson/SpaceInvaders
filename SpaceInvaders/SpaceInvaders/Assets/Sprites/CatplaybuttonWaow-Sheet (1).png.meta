@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a4741efe3d0ff264d922066d3afbd177
+guid: c7355b9541f67c641afcfe7488128123
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CatplaybuttonWaow-Sheet_0
+      name: CatplaybuttonWaow-Sheet (1)_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc73f9ccf207d324b80e89b2eb1a266e
-      internalID: -1546720651
+      spriteID: 72459429977b55546a91315a5eddab07
+      internalID: -770780311
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CatplaybuttonWaow-Sheet_1
+      name: CatplaybuttonWaow-Sheet (1)_1
       rect:
         serializedVersion: 2
         x: 640
@@ -158,8 +158,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ded4c61b89c8bae408e2a44eb10988eb
-      internalID: -355821918
+      spriteID: dbc883730238edc4cae599d8a30001c6
+      internalID: 235451279
       vertices: []
       indices: 
       edges: []
@@ -175,8 +175,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      CatplaybuttonWaow-Sheet_0: -1546720651
-      CatplaybuttonWaow-Sheet_1: -355821918
+      CatplaybuttonWaow-Sheet (1)_0: -770780311
+      CatplaybuttonWaow-Sheet (1)_1: 235451279
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

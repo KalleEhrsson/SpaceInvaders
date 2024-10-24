@@ -208,6 +208,7 @@ public class GameManager : MonoBehaviour
     public void OnMysteryShipKilled(MysteryShip mysteryShip)
     {
         mysteryShip.gameObject.SetActive(false);
+        SetScore(score + 225);
     }
 
     public void OnBoundaryReached()
