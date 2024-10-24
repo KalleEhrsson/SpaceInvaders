@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public Vector3 zoomCameraOffset = new Vector3(0f, 0f, -10f);
     float timer = -1;
     float deathtimer = -1;
+    public float wave = 1f;
 
     public TextMeshProUGUI scoreText;
     public int lives { get; private set; } = 3;
@@ -117,7 +118,7 @@ public class GameManager : MonoBehaviour
     public void SetScore(int playerScore)
     {
         score = playerScore;
-        scoreText.text = $"{score}";
+        scoreText.text = $"{score}" + " - " + $"{wave}";
 
         if (score > 0 && score % 100 == 0)
         {
@@ -216,6 +217,8 @@ public class GameManager : MonoBehaviour
         }
         if (invaders.GetInvaderCount() == 0)
         {
+            wave++;
+            SetScore(score);
             timer = 350f;
         }
     }
