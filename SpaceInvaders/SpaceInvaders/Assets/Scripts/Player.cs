@@ -48,6 +48,17 @@ public class Player : MonoBehaviour
                     if (GameObject.Find("GregoryHeart").GetComponent<HeartCode>().input == false)
                     {
                         x_position -= 5f;
+        // Left movement
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        {
+            if (left == false)
+            {
+                if (GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beattimer > 0f)
+                {
+                    // If on beat
+                    if (GameObject.Find("GregoryHeart").GetComponent<HeartCode>().input == false)
+                    {
+                        x_position -= 5f;
                         GameObject.Find("GregoryHeart").GetComponent<HeartCode>().input = true;
                         GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beat = true;
                         GameObject.Find("GregoryHeart").GetComponent<HeartCode>().current_line = 0;
@@ -62,13 +73,14 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
+                    // If failed beat
                     GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(0.5f);
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().current_line = 0;
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().scale = 0.75f;
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().failtimer = 15f;
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beat = false;
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().hurt.Play();
-                    GameObject.Find("GameManager").GetComponent<GameManager>().SetScore(GameObject.Find("GameManager").GetComponent<GameManager>().score - 30);
+                    GameObject.Find("GameManager").GetComponent<GameManager>().SetScore(GameObject.Find("GameManager").GetComponent<GameManager>().score - 100);
                     left = true;
                     move = true;
                 }
@@ -79,12 +91,14 @@ public class Player : MonoBehaviour
             left = false;
         }
 
+        // Right movement
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             if (right == false)
             {
                 if (GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beattimer > 0f)
                 {
+                    // If on beat
                     if(GameObject.Find("GregoryHeart").GetComponent<HeartCode>().input == false)
                     {
                         x_position += 5f;
@@ -102,13 +116,14 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
+                    // If failed beat
                     GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(0.5f);
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().current_line = 0;
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().scale = 0.75f;
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().failtimer = 15f;
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beat = false;
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().hurt.Play();
-                    GameObject.Find("GameManager").GetComponent<GameManager>().SetScore(GameObject.Find("GameManager").GetComponent<GameManager>().score - 30);
+                    GameObject.Find("GameManager").GetComponent<GameManager>().SetScore(GameObject.Find("GameManager").GetComponent<GameManager>().score - 100);
                     right = true;
                     move = true;
                 }
@@ -128,12 +143,14 @@ public class Player : MonoBehaviour
 
         transform.position = position;
 
+        // Shooting code
         if (Input.GetKey(KeyCode.Space))
         {
             if (shoot == false)
             {
                 if (GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beattimer > 0f)
                 {
+                    // If on beat
                     if (GameObject.Find("GregoryHeart").GetComponent<HeartCode>().input == false)
                     {
                         GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(1f);
@@ -160,13 +177,14 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
+                    // If failed beat
                     GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(0.5f);
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().current_line = 0;
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().scale = 0.75f;
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().failtimer = 15f;
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beat = false;
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().hurt.Play();
-                    GameObject.Find("GameManager").GetComponent<GameManager>().SetScore(GameObject.Find("GameManager").GetComponent<GameManager>().score - 30);
+                    GameObject.Find("GameManager").GetComponent<GameManager>().SetScore(GameObject.Find("GameManager").GetComponent<GameManager>().score - 100);
 
                     shoot = true;
                 }
@@ -177,6 +195,7 @@ public class Player : MonoBehaviour
             shoot = false;
         }
 
+        // Squash and stretch
         x_scale += (1.9f - x_scale) * 10f * Time.deltaTime;
         y_scale += (1.9f - y_scale) * 10f * Time.deltaTime;
 

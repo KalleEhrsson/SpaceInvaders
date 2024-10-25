@@ -20,12 +20,14 @@ public class ScreenShakeCode : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        // Position is what makes screen shake with random intervals, decreases over time, clamped at 0 and 100
         transform.position = new Vector3(Random.Range(-shake, shake), Random.Range(-shake, shake), -10);
 
         if (shake > 0f) shake -= Time.deltaTime * 10f;
 
         shake = Mathf.Clamp(shake, 0, 100);
 
+        // flashes the camera to a slight blue color
         if (flash > 0)
         {
             spr.color = new Color(0f, 0f, 1f);
@@ -39,6 +41,7 @@ public class ScreenShakeCode : MonoBehaviour
 
         flash = Mathf.Clamp(flash, 0, 100);
 
+        // this was supposed to stop time for a few frames (ended up not being used but it should work idk)
         if (time > 0f) time -= Time.deltaTime * 10f;
 
         time = Mathf.Clamp(time, 0, 100);

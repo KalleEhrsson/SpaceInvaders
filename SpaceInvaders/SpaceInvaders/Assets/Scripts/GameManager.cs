@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Timeline.Actions;
 using TMPro;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(-1)]
@@ -28,6 +27,12 @@ public class GameManager : MonoBehaviour
     public AudioClip cutsceneSound;
     private Button restartButtonComponent;
 
+
+    public Vector3 originalCameraPosition; 
+    public Vector3 zoomCameraOffset = new Vector3(0f, 0f, -10f);
+    float timer = -1;
+    float deathtimer = -1;
+    public float wave = 1f;
 
     public TextMeshProUGUI scoreText;
     public int lives { get; private set; } = 3;
@@ -78,6 +83,15 @@ public class GameManager : MonoBehaviour
         {
             NewGame();
         }
+
+        // a bunch of timers to delay certain fucntions, like for example between waves and death
+        timer -= 10f;
+        deathtimer -= 10f;
+
+        if (timer == 0f) NewRound();
+        if (deathtimer == 0f) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (score < 0) SetScore(0);
+
     }
 
     private void OnRestartButtonClick()
@@ -95,22 +109,25 @@ public class GameManager : MonoBehaviour
 
     private void NewRound()
     {
-        invaders.ResetInvaders();
-        invaders.gameObject.SetActive(true);
-
-        for (int i = 0; i < bunkers.Length; i++)
+        if (timer <= 0f)
         {
-            bunkers[i].ResetBunker();
-        }
+            invaders.ResetInvaders();
+            invaders.gameObject.SetActive(true);
 
-        Respawn();
+            for (int i = 0; i < bunkers.Length; i++)
+            {
+                bunkers[i].ResetBunker();
+            }
+
+            Respawn();
+        }
     }
 
     private void Respawn()
     {
         Vector3 position = player.transform.position;
         position.x = 0f;
-        player.transform.position = position;
+        //player.transform.position = position;
         player.gameObject.SetActive(true);
     }
 
@@ -121,8 +138,9 @@ public class GameManager : MonoBehaviour
 
     public void SetScore(int playerScore)
     {
+        // Sets the score
         score = playerScore;
-        scoreText.text = $"{score}";
+        scoreText.text = $"{score}" + " - " + $"{wave}";
 
         if (score > 0 && score % 100 == 0)
         {
@@ -201,6 +219,43 @@ public class GameManager : MonoBehaviour
         }
 
         // Zoom in mot spelaren
+        GameObject invaderGrid = GameObject.Find("InvaderGrid");
+        if (invaderGrid != null)
+        {
+            Destroy(invaderGrid);
+        }
+
+        Laser laser = FindObjectOfType<Laser>();
+        if (laser != null)
+        {
+            laser.enabled = false;
+        }
+
+        Missile missile = FindObjectOfType<Missile>();
+        if (missile != null)
+        {
+            missile.enabled = false;
+        }
+
+        MysteryShip mysteryShip = FindObjectOfType<MysteryShip>();
+        if (mysteryShip != null)
+        {
+            mysteryShip.enabled = false;
+        }
+
+        Player playerScript = player.GetComponent<Player>();
+        if (playerScript != null)
+        {
+            playerScript.enabled = false;
+        }
+
+        StartCoroutine(SmoothZoomInOnPlayer(player));
+        deathtimer = 1500f;
+    }
+
+    private IEnumerator SmoothZoomInOnPlayer(Player player)
+    {
+        // Zooms in on player (I don't know I didn't write this)
         float zoomDuration = 1f / zoomSpeed;
         float elapsedTime = 0f;
 
@@ -268,6 +323,12 @@ public class GameManager : MonoBehaviour
 
 
 public void OnInvaderKilled(Invader invader)
+        // v�nta p� cutscene ska finish sedan logik f�r att reseta eller f� en restart button
+        yield return new WaitForSeconds(10f);
+    }
+
+
+    public void OnInvaderKilled(Invader invader)
     {
         invader.gameObject.SetActive(false);
 
@@ -285,7 +346,9 @@ public void OnInvaderKilled(Invader invader)
         }
         if (invaders.GetInvaderCount() == 0)
         {
-            NewRound();
+            wave++;
+            SetScore(score);
+            timer = 350f;
         }
     }
 

@@ -19,6 +19,7 @@ public class GregoryCode : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        // This is all old code for the old player, it was made out of seperate objects a limbs, instead of a singular sprite
         if (arm == false)
         {
             if (follow == false)

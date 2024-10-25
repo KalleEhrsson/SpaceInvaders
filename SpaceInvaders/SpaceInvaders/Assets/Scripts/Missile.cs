@@ -12,6 +12,8 @@ public class Missile : Projectile
 
     SpriteRenderer spriteRenderer;
     int animationFrame;
+    public float other_dir = 0;
+
     private void Awake()
     {
         direction = Vector3.down;
@@ -34,12 +36,27 @@ public class Missile : Projectile
 
     void Update()
     {
-        transform.position += speed * Time.deltaTime * direction;
+        float _speed = speed;
+        if (other_dir != 0) _speed = speed * (1f / 1.41f);
+
+        transform.position += _speed * Time.deltaTime * direction;
+
+        if(other_dir == 1)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 315);
+            transform.position += _speed * Time.deltaTime * -Vector3.right;
+        }
+
+        if (other_dir == -1)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 45);
+            transform.position += _speed * Time.deltaTime * Vector3.right;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject); //så fort den krockar med något så ska den försvinna.
+        Destroy(gameObject); //sï¿½ fort den krockar med nï¿½got sï¿½ ska den fï¿½rsvinna.
     }
    
 }

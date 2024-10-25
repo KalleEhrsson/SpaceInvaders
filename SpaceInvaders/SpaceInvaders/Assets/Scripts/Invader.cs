@@ -49,6 +49,7 @@ public class Invader : MonoBehaviour
         {
             //Invadern d�r
             GameManager.Instance.OnInvaderKilled(this);
+            // Add some screen shake and explosion effects
             GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenFlash(0.1f);
             GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(2);
             death.Play();
