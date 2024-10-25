@@ -24,26 +24,6 @@ public class Player : MonoBehaviour
     {
         Vector3 position = transform.position;
 
-        /*
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            position.x -= speed * Time.deltaTime;
-        }
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            position.x += speed * Time.deltaTime;
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            position.x -= speed * Time.deltaTime;
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            position.x += speed * Time.deltaTime;
-        }
-        */
-
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             if (left == false)
@@ -147,6 +127,8 @@ public class Player : MonoBehaviour
                         laser_object.GetComponent<Laser>().weak = true;
                         if (move == true) laser_object.GetComponent<Laser>().weak = false;
                         move = false;
+
+
 
                         GameObject.Find("GregoryHeart").GetComponent<HeartCode>().input = true;
                         GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beat = true;
