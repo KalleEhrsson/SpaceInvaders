@@ -14,21 +14,21 @@ public class GameManager : MonoBehaviour
     private Invaders invaders;
     private MysteryShip mysteryShip;
     private Bunker[] bunkers;
-    public Camera mainCamera; 
+    public Camera mainCamera;
     public float zoomSpeed = 2f;     // uses for the death cutscene type thing
-    public float targetZoomSize = 3f; 
-    private float originalZoomSize;  
+    public float targetZoomSize = 3f;
+    private float originalZoomSize;
     public Vector3 originalCameraPosition;
     public Vector3 zoomCameraOffset = new Vector3(0f, 0f, -10f);
 
-    public Image blackoutImage;             
-    public GameObject restartButton;         
-    public AudioSource gameAudioSource;      
+    public Image blackoutImage;
+    public GameObject restartButton;
+    public AudioSource gameAudioSource;
     public AudioClip cutsceneSound;
     private Button restartButtonComponent;
 
 
-    public Vector3 originalCameraPosition; 
+    public Vector3 originalCameraPosition;
     public Vector3 zoomCameraOffset = new Vector3(0f, 0f, -10f);
     float timer = -1;
     float deathtimer = -1;
@@ -322,10 +322,12 @@ public class GameManager : MonoBehaviour
 
 
 
-public void OnInvaderKilled(Invader invader)
+    public void OnInvaderKilled(Invader invader)
+    {
         // v�nta p� cutscene ska finish sedan logik f�r att reseta eller f� en restart button
         yield return new WaitForSeconds(10f);
     }
+    
 
 
     public void OnInvaderKilled(Invader invader)
@@ -358,7 +360,7 @@ public void OnInvaderKilled(Invader invader)
         SetScore(score + 225);
     }
 
-    public void OnBoundaryReached()
+     void OnBoundaryReached()
     {
         if (invaders.gameObject.activeSelf)
         {
