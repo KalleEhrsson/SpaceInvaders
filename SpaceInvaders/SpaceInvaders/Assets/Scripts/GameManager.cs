@@ -3,7 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Timeline.Actions;
 using TMPro;
+<<<<<<< Updated upstream
 using UnityEngine.UI;
+=======
+>>>>>>> Stashed changes
 using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(-1)]
@@ -225,6 +228,7 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("start cutscene");
 
+<<<<<<< Updated upstream
         StartCoroutine(FadeBlackoutAndShowRestart());
     }
 
@@ -263,6 +267,11 @@ public class GameManager : MonoBehaviour
         }
 
         restartButton.GetComponent<Image>().color = buttonEndColor;
+=======
+        // v�nta p� cutscene ska finish sedan logik f�r att reseta eller f� en restart button
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+>>>>>>> Stashed changes
     }
 
 
