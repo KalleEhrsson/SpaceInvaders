@@ -37,6 +37,7 @@ public class Laser : Projectile
 
     void Update()
     {
+        // If the player moves the lazer gains more speed, size and piercing
         speed = 80f;
         transform.localScale = new Vector3(2f,2f, 1f);
         if (weak == true)

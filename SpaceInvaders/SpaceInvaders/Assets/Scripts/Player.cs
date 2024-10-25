@@ -24,32 +24,14 @@ public class Player : MonoBehaviour
     {
         Vector3 position = transform.position;
 
-        /*
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            position.x -= speed * Time.deltaTime;
-        }
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            position.x += speed * Time.deltaTime;
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            position.x -= speed * Time.deltaTime;
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            position.x += speed * Time.deltaTime;
-        }
-        */
-
+        // Left movement
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             if (left == false)
             {
                 if (GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beattimer > 0f)
                 {
+                    // If on beat
                     if (GameObject.Find("GregoryHeart").GetComponent<HeartCode>().input == false)
                     {
                         x_position -= 5f;
@@ -67,6 +49,7 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
+                    // If failed beat
                     GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(0.5f);
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().current_line = 0;
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().scale = 0.75f;
@@ -84,12 +67,14 @@ public class Player : MonoBehaviour
             left = false;
         }
 
+        // Right movement
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             if (right == false)
             {
                 if (GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beattimer > 0f)
                 {
+                    // If on beat
                     if(GameObject.Find("GregoryHeart").GetComponent<HeartCode>().input == false)
                     {
                         x_position += 5f;
@@ -107,6 +92,7 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
+                    // If failed beat
                     GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(0.5f);
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().current_line = 0;
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().scale = 0.75f;
@@ -133,12 +119,14 @@ public class Player : MonoBehaviour
 
         transform.position = position;
 
+        // Shooting code
         if (Input.GetKey(KeyCode.Space))
         {
             if (shoot == false)
             {
                 if (GameObject.Find("GregoryHeart").GetComponent<HeartCode>().beattimer > 0f)
                 {
+                    // If on beat
                     if (GameObject.Find("GregoryHeart").GetComponent<HeartCode>().input == false)
                     {
                         GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(1f);
@@ -161,6 +149,7 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
+                    // If failed beat
                     GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(0.5f);
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().current_line = 0;
                     GameObject.Find("GregoryHeart").GetComponent<HeartCode>().scale = 0.75f;
@@ -178,8 +167,9 @@ public class Player : MonoBehaviour
             shoot = false;
         }
 
-        x_scale += (1 - x_scale) * 10f * Time.deltaTime;
-        y_scale += (1 - y_scale) * 10f * Time.deltaTime;
+        // Squash and stretch
+        x_scale += (1.9f - x_scale) * 10f * Time.deltaTime;
+        y_scale += (1.9f - y_scale) * 10f * Time.deltaTime;
 
         transform.localScale = new Vector3(x_scale, y_scale, 1f);
     }

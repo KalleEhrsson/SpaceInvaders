@@ -30,6 +30,7 @@ public class HeartCode : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        // Each time the heart beats, the artery lines get bigger in a wave (goes in a for loop, one part of the line gets big, then the other part next to it and so on)
         if(beat == true)
         {
             if (line_timer <= 0f)
@@ -47,6 +48,7 @@ public class HeartCode : MonoBehaviour
             }
         }
 
+        // Squash and stretch for the lines
         for (int _i = 0; _i < 9; _i++)
         {
             line_y[_i] += (1 - line_y[_i]) * 10f * Time.deltaTime;
@@ -55,6 +57,7 @@ public class HeartCode : MonoBehaviour
             line[_i + 9].transform.localScale = new Vector3(20f, line_y[_i + 9], 1f);
         }
 
+        // These are all the timers for the beat, fail effect and beat effect
         if (timer > 0f) timer -= 1f;
         timer = Mathf.Clamp(timer, 0, 120f);
 
@@ -94,7 +97,7 @@ public class HeartCode : MonoBehaviour
 
             heartbeat.Play();
 
-            timer = 60/bpm*60;
+            timer = 60/bpm*60; // the formula for bpm
             beattimer = 15f;
         }
 

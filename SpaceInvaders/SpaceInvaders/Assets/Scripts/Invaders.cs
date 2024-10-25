@@ -81,6 +81,7 @@ public class Invaders : MonoBehaviour
                 continue;
             
            
+            // increases the randomnes for bullets based on waves (adds chance for double bullet as well)
             float rand = UnityEngine.Random.value;
 
             float _target = 0.1f + (GameObject.Find("GameManager").GetComponent<GameManager>().wave*0.1f);
@@ -125,6 +126,7 @@ public class Invaders : MonoBehaviour
     //Flyttar invaders åt sidan
     void Update()
     {
+        // we make some movement here manipulated by waves
         float speed = 1f+(GameObject.Find("GameManager").GetComponent<GameManager>().wave*0.2f);
         speed = Mathf.Clamp(speed, 1f, 3f);
         transform.position += speed * Time.deltaTime * direction;

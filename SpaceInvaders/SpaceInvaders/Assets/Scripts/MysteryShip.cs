@@ -5,13 +5,15 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class MysteryShip : MonoBehaviour
 {
-    float speed = 5f;
+    float speed = 12f;
     float cycleTime = 5f;
 
     Vector2 leftDestination;
     Vector2 rightDestination;
     int direction = -1;
     bool isVisible;
+
+    float timer = 0f;
 
     
     void Start()
@@ -27,33 +29,43 @@ public class MysteryShip : MonoBehaviour
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
         if (!isVisible) //är den inte synlig så ska den ej röra sig.
         {
             return;
         }
 
-        if(direction == 1)
+        if (timer > 5f)
         {
-            //rör sig åt höger
-            transform.position += speed * Time.deltaTime * Vector3.right;
-
-            if (transform.position.x >= rightDestination.x)
+            if (direction == 1)
             {
-                SetInvisible();
+                //rör sig åt höger
+                transform.position += speed * Time.deltaTime * Vector3.right;
+
+                if (transform.position.x >= rightDestination.x)
+                {
+                    SetInvisible();
+                }
+            }
+            else
+            {
+                //rör sig åt vänster
+                transform.position += speed * Time.deltaTime * Vector3.left;
+
+                if (transform.position.x <= leftDestination.x)
+                {
+                    SetInvisible();
+                }
             }
         }
-        else
-        {
-            //rör sig åt vänster
-            transform.position += speed * Time.deltaTime * Vector3.left;
 
-            if (transform.position.x <= leftDestination.x)
-            {
-                SetInvisible();
-            }
+        if(timer <= 0f)
+        {
+            timer = Random.Range(6f, 15f);
         }
+
+        timer -= 10f * Time.deltaTime;
     }
 
   

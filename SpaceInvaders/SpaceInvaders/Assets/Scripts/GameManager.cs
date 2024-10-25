@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
             NewGame();
         }
 
+        // a bunch of timers to delay certain fucntions, like for example between waves and death
         timer -= 10f;
         deathtimer -= 10f;
 
@@ -117,6 +118,7 @@ public class GameManager : MonoBehaviour
 
     public void SetScore(int playerScore)
     {
+        // Sets the score
         score = playerScore;
         scoreText.text = $"{score}" + " - " + $"{wave}";
 
@@ -170,6 +172,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator SmoothZoomInOnPlayer(Player player)
     {
+        // Zooms in on player (I don't know I didn't write this)
         float zoomDuration = 1f / zoomSpeed;
         float elapsedTime = 0f;
 

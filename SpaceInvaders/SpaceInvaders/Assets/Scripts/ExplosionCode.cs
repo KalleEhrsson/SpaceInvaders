@@ -15,6 +15,7 @@ public class ExplosionCode : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        // just destroy itself after a small timer
         timer -= 10f * Time.deltaTime;
 
         if (timer <= 0f) Destroy(gameObject);
