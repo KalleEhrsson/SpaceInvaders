@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Timeline.Actions;
 using TMPro;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
@@ -17,8 +19,15 @@ public class GameManager : MonoBehaviour
     public float zoomSpeed = 2f;     // uses for the death cutscene type thing
     public float targetZoomSize = 3f; 
     private float originalZoomSize;  
-    public Vector3 originalCameraPosition; 
+    public Vector3 originalCameraPosition;
     public Vector3 zoomCameraOffset = new Vector3(0f, 0f, -10f);
+
+    public Image blackoutImage;             
+    public GameObject restartButton;         
+    public AudioSource gameAudioSource;      
+    public AudioClip cutsceneSound;
+    private Button restartButtonComponent;
+
 
     public TextMeshProUGUI scoreText;
     public int lives { get; private set; } = 3;
@@ -54,7 +63,12 @@ public class GameManager : MonoBehaviour
 
         originalZoomSize = mainCamera.orthographicSize;
         originalCameraPosition = mainCamera.transform.position;
+        restartButtonComponent = restartButton.GetComponentInChildren<Button>();
 
+        Color buttonColor = restartButtonComponent.GetComponent<Image>().color;
+        buttonColor.a = 0f; // Gör knappen osynlig
+        restartButtonComponent.GetComponent<Image>().color = buttonColor;
+        restartButtonComponent.onClick.AddListener(OnRestartButtonClick);
         NewGame();
     }
 
@@ -66,6 +80,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void OnRestartButtonClick()
+    {
+        // Ladda om den scenen
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
     private void NewGame()
     {
 
@@ -119,41 +138,69 @@ public class GameManager : MonoBehaviour
 
     public void OnPlayerKilled(Player player)
     {
+        // Tidigare kod för att rensa objekt och inaktivera script
         GameObject invaderGrid = GameObject.Find("InvaderGrid");
-        if (invaderGrid != null)
-        {
-            Destroy(invaderGrid);
-        }
+        if (invaderGrid != null) Destroy(invaderGrid);
 
         Laser laser = FindObjectOfType<Laser>();
-        if (laser != null)
-        {
-            laser.enabled = false;
-        }
+        if (laser != null) laser.enabled = false;
 
         Missile missile = FindObjectOfType<Missile>();
-        if (missile != null)
-        {
-            missile.enabled = false;
-        }
+        if (missile != null) missile.enabled = false;
 
         MysteryShip mysteryShip = FindObjectOfType<MysteryShip>();
-        if (mysteryShip != null)
-        {
-            mysteryShip.enabled = false;
-        }
+        if (mysteryShip != null) mysteryShip.enabled = false;
 
         Player playerScript = player.GetComponent<Player>();
-        if (playerScript != null)
+        if (playerScript != null) playerScript.enabled = false;
+
+        // Hitta och stäng av HeartCode-skriptet
+        HeartCode heartCodeScript = FindObjectOfType<HeartCode>();
+        if (heartCodeScript != null)
         {
-            playerScript.enabled = false;
+            heartCodeScript.enabled = false;
         }
 
+        // Stoppa alla ljud inom GregoryHeart-objektet
+        GameObject gregoryHeart = GameObject.Find("GregoryHeart");
+        if (gregoryHeart != null)
+        {
+            AudioSource[] audioSources = gregoryHeart.GetComponentsInChildren<AudioSource>();
+            foreach (var audioSource in audioSources)
+            {
+                audioSource.Stop();
+            }
+        }
+
+        // Spela upp cutscene-ljudet
+        if (gameAudioSource != null && cutsceneSound != null)
+        {
+            gameAudioSource.clip = cutsceneSound;
+            gameAudioSource.loop = false;
+            gameAudioSource.Play();
+        }
+
+        // Starta cutscene-effekten
         StartCoroutine(SmoothZoomInOnPlayer(player));
     }
 
+
     private IEnumerator SmoothZoomInOnPlayer(Player player)
     {
+        // Stoppar allt ljud
+        if (gameAudioSource != null)
+        {
+            gameAudioSource.Stop();
+        }
+
+        // Startar cutscene-ljudet
+        if (cutsceneSound != null)
+        {
+            gameAudioSource.clip = cutsceneSound;
+            gameAudioSource.Play();
+        }
+
+        // Zoom in mot spelaren
         float zoomDuration = 1f / zoomSpeed;
         float elapsedTime = 0f;
 
@@ -178,12 +225,51 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("start cutscene");
 
-        // v�nta p� cutscene ska finish sedan logik f�r att reseta eller f� en restart button
-        yield return new WaitForSeconds(10f);
+        StartCoroutine(FadeBlackoutAndShowRestart());
+    }
+
+    private IEnumerator FadeBlackoutAndShowRestart()
+    {
+        float fadeDuration = 2f;
+
+        Color startColor = blackoutImage.color;
+        Color endColor = new Color(startColor.r, startColor.g, startColor.b, 1f);
+
+        float elapsed = 0f;
+
+        // Fade in blackoutImage
+        while (elapsed < fadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            blackoutImage.color = Color.Lerp(startColor, endColor, elapsed / fadeDuration);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(2f);
+
+        // Fade in restartButton
+        Color buttonStartColor = restartButton.GetComponent<Image>().color; // hämta start colour
+        Color buttonEndColor = new Color(buttonStartColor.r, buttonStartColor.g, buttonStartColor.b, 1f); // Slutfärgen med alpha 1
+
+        elapsed = 0f;
+
+        // Fade in restartButton
+        while (elapsed < fadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            Color newColor = Color.Lerp(buttonStartColor, buttonEndColor, elapsed / fadeDuration);
+            restartButton.GetComponent<Image>().color = newColor; // fade in effekt
+            yield return null;
+        }
+
+        restartButton.GetComponent<Image>().color = buttonEndColor;
     }
 
 
-    public void OnInvaderKilled(Invader invader)
+
+
+
+public void OnInvaderKilled(Invader invader)
     {
         invader.gameObject.SetActive(false);
 
