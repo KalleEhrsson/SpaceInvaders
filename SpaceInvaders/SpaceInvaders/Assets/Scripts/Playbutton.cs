@@ -18,16 +18,13 @@ public class Playbutton : MonoBehaviour
     private void Start()
     {
         InvokeRepeating(nameof(AnimateSprite), animationTime, animationTime);
-        Debug.Log("invoke sak");
     }
 
     private void AnimateSprite()
     {
-        Debug.Log("animate sprite sak");
         animationFrame++;
         if (animationFrame >= animationSprites.Length)
         {
-            Debug.Log("frame sak");
             animationFrame = 0;
         }
         spRend.sprite = animationSprites[animationFrame];

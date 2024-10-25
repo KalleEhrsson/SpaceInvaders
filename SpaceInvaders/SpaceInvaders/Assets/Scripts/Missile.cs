@@ -7,11 +7,31 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Missile : Projectile
 {
+    public Sprite[] animationSprites = new Sprite[2];
+    public float animationTime;
+
+    SpriteRenderer spriteRenderer;
+    int animationFrame;
     private void Awake()
     {
         direction = Vector3.down;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = animationSprites[0];
     }
-   
+    private void Start()
+    {
+        InvokeRepeating(nameof(animateSprite), animationTime, animationTime);
+    }
+    private void animateSprite()
+    {
+        animationFrame++;
+        if (animationFrame >= animationSprites.Length)
+        {
+            animationFrame = 0;
+        }
+        spriteRenderer.sprite = animationSprites[animationFrame];
+    }
+
     void Update()
     {
         transform.position += speed * Time.deltaTime * direction;
