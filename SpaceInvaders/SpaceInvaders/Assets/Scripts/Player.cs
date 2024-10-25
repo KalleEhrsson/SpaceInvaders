@@ -18,11 +18,26 @@ public class Player : MonoBehaviour
     public float y_scale = 0f;
     public AudioSource shoot_sound;
     public AudioSource move_sound;
+    public SpriteRenderer spr;
+    public Sprite spr_shoot;
+    public Sprite spr_idle;
+    float shoot_timer = 0f;
 
     // Update is called once per frame
     void FixedUpdate()
     {
         Vector3 position = transform.position;
+
+        if(shoot_timer > 0f)
+        {
+            spr.sprite = spr_shoot;
+        }
+        else
+        {
+            spr.sprite = spr_idle;
+        }
+
+        shoot_timer -= 10f * Time.deltaTime;
 
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
@@ -138,6 +153,8 @@ public class Player : MonoBehaviour
                         x_scale = 0.5f;
                         y_scale = 1.5f;
 
+                        shoot_timer = 0.5f;
+
                         shoot = true;
                     }
                 }
@@ -160,8 +177,8 @@ public class Player : MonoBehaviour
             shoot = false;
         }
 
-        x_scale += (1 - x_scale) * 10f * Time.deltaTime;
-        y_scale += (1 - y_scale) * 10f * Time.deltaTime;
+        x_scale += (1.9f - x_scale) * 10f * Time.deltaTime;
+        y_scale += (1.9f - y_scale) * 10f * Time.deltaTime;
 
         transform.localScale = new Vector3(x_scale, y_scale, 1f);
     }

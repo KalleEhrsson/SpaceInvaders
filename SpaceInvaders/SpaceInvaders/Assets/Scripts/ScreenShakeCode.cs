@@ -7,6 +7,7 @@ public class ScreenShakeCode : MonoBehaviour
     public float shake = 0f;
     public float flash = 0f;
     public float time = 0f;
+    public SpriteRenderer spr;
 
     // Start is called before the first frame update
     void Start()
@@ -27,11 +28,11 @@ public class ScreenShakeCode : MonoBehaviour
 
         if (flash > 0)
         {
-            GetComponent<Camera>().backgroundColor = new Color(0.1f, 0.1f, 0.3f);
+            spr.color = new Color(0f, 0f, 1f);
         }
         else
         {
-            GetComponent<Camera>().backgroundColor = new Color(0.1f, 0.1f, 0.1f);
+            spr.color = new Color(1f, 1f, 1f);
         }
 
         if (flash > 0f) flash -= Time.deltaTime * 10f;

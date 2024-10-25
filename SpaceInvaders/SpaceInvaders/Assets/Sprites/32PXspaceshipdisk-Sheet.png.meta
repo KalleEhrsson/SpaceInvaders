@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c7355b9541f67c641afcfe7488128123
+guid: cb474e83ddc24e44aac625cc13484a69
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CatplaybuttonWaow-Sheet (1)_0
+      name: 32PXspaceshipdisk-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 640
-        height: 640
+        width: 320
+        height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72459429977b55546a91315a5eddab07
-      internalID: -770780311
+      spriteID: a2732d83041baeb418a5f05352e81d10
+      internalID: -624316774
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CatplaybuttonWaow-Sheet (1)_1
+      name: 32PXspaceshipdisk-Sheet_1
       rect:
         serializedVersion: 2
-        x: 640
+        x: 320
         y: 0
-        width: 640
-        height: 640
+        width: 320
+        height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,8 +158,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dbc883730238edc4cae599d8a30001c6
-      internalID: 235451279
+      spriteID: 2ec08f1ad0777d147afb22d84cf41809
+      internalID: 1771619832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 32PXspaceshipdisk-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09ef642372c626245ac1754a0765fbd8
+      internalID: -1126682074
       vertices: []
       indices: 
       edges: []
@@ -175,8 +196,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      CatplaybuttonWaow-Sheet (1)_0: -770780311
-      CatplaybuttonWaow-Sheet (1)_1: 235451279
+      32PXspaceshipdisk-Sheet_0: -624316774
+      32PXspaceshipdisk-Sheet_1: 1771619832
+      32PXspaceshipdisk-Sheet_2: -1126682074
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
