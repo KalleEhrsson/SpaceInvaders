@@ -261,11 +261,6 @@ public class GameManager : MonoBehaviour
             restartButton.GetComponent<Image>().color = newColor; // fade in effekt
             yield return null;
         }
-
-        restartButton.GetComponent<Image>().color = buttonEndColor;
-        // v�nta p� cutscene ska finish sedan logik f�r att reseta eller f� en restart button
-        yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 
