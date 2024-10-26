@@ -12,6 +12,10 @@ public class GameManager : MonoBehaviour
     private Invaders invaders;
     private MysteryShip mysteryShip;
     private Bunker[] bunkers;
+    private Missile[] missile;
+    private Laser laser;
+
+
     public Camera mainCamera;
     public float zoomSpeed = 2f;     // uses for the death cutscene type thing
     public float targetZoomSize = 3f;
@@ -73,6 +77,10 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+
+        laser = FindObjectOfType<Laser>();
+        missile = FindObjectsOfType<Missile>();
+
         if (lives <= 0 && Input.GetKeyDown(KeyCode.Return))
         {
             NewGame();
@@ -162,6 +170,21 @@ public class GameManager : MonoBehaviour
         player.gameObject.SetActive(false);
         invaders.gameObject.SetActive(false);
         mysteryShip.gameObject.SetActive(false);
+
+        foreach (Bunker activeBunker in bunkers)
+        {
+            activeBunker.gameObject.SetActive(false);
+        }
+
+        foreach(Missile activeMissile in missile)
+        {
+            activeMissile.gameObject.SetActive(false);
+        }
+
+        if (laser != null)
+        {
+            laser.gameObject.SetActive(false);
+        }
 
         restartButton.gameObject.SetActive(true);
         mainMenu.gameObject.SetActive(true);
