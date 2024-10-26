@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,13 +6,13 @@ public class ChangeScene : MonoBehaviour
 {
   public void PlayGame()
     {
-        print("Play knappen funkar");
+        print("play");
         SceneManager.LoadSceneAsync("MainScene");
     }
 
     public void QuitGame()
     {
-        print("Quit knappen funkar");
+        print("Quit");
         Application.Quit();
     }
 }

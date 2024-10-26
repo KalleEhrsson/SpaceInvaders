@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Security;
 using UnityEngine;
 
 
@@ -10,38 +7,9 @@ using UnityEngine;
 
 public class Invader : MonoBehaviour
 {
-    public Sprite[] animationSprites = new Sprite[2];
-    public float animationTime;
     public GameObject explosion;
     public AudioSource death;
     public int invaderType;
-
-
-    SpriteRenderer spRend;
-    int animationFrame;
-    private void Awake()
-    {
-        spRend = GetComponent<SpriteRenderer>();
-        spRend.sprite = animationSprites[0];
-
-    }
-
-    void Start()
-    {
-        //Anropar AnimateSprite med ett visst tidsintervall
-        InvokeRepeating(nameof(AnimateSprite), animationTime, animationTime);
-    }
-
-    //pandlar mellan olika sprited f�r att skapa en animation
-    private void AnimateSprite()
-    {
-        animationFrame++;
-        if (animationFrame >= animationSprites.Length)
-        {
-            animationFrame = 0;
-        }
-        spRend.sprite = animationSprites[animationFrame];
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -49,6 +17,7 @@ public class Invader : MonoBehaviour
         {
             //Invadern d�r
             GameManager.Instance.OnInvaderKilled(this);
+
             // Add some screen shake and explosion effects
             GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenFlash(0.1f);
             GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(2);
@@ -60,5 +29,4 @@ public class Invader : MonoBehaviour
             GameManager.Instance.OnBoundaryReached();
         }
     }
-
 }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1892774137978854704}
   - component: {fileID: -5442767590078531101}
   - component: {fileID: -3490217107782599277}
+  - component: {fileID: -3492938552191719310}
   m_Layer: 7
   m_Name: Laser
   m_TagString: Untagged
@@ -103,7 +104,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 30
-  m_Sprite: {fileID: 21300000, guid: f5dbc40839d5c204dacf7718b7d5aeee, type: 3}
+  m_Sprite: {fileID: -421018638, guid: ae9290c2291972d43a0697c7d3621993, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -150,7 +151,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6, y: 6}
+    oldSize: {x: 3.2, y: 3.2}
     newSize: {x: 3.2, y: 3.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -171,12 +172,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e87228cde928504691f4979c19f121a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weak: 0
+--- !u!114 &-3492938552191719310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2507287983592897736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4574a7fef590a874587a52a27e1ad461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   animationSprites:
   - {fileID: -421018638, guid: ae9290c2291972d43a0697c7d3621993, type: 3}
   - {fileID: -60277653, guid: ae9290c2291972d43a0697c7d3621993, type: 3}
   - {fileID: 1071550188, guid: ae9290c2291972d43a0697c7d3621993, type: 3}
-  animationTime: 0
-  weak: 0
+  animationTime: 0.25
 --- !u!114 &4778995549039809072
 MonoBehaviour:
   m_ObjectHideFlags: 0

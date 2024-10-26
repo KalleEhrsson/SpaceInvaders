@@ -1,9 +1,7 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Timeline.Actions;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
@@ -20,16 +18,14 @@ public class GameManager : MonoBehaviour
     private float originalZoomSize;
     public Vector3 originalCameraPosition;
     public Vector3 zoomCameraOffset = new Vector3(0f, 0f, -10f);
+    private Image blackoutImage;
 
-    public Image blackoutImage;
-    public GameObject restartButton;
-    public AudioSource gameAudioSource;
-    public AudioClip cutsceneSound;
-    private Button restartButtonComponent;
+    public Button restartButton;
+    public Button mainMenu;
+    // private AudioSource gameAudioSource;
+    public AudioSource cutsceneSound;
+    public AudioSource gameAudio;
 
-
-    public Vector3 originalCameraPosition;
-    public Vector3 zoomCameraOffset = new Vector3(0f, 0f, -10f);
     float timer = -1;
     float deathtimer = -1;
     public float wave = 1f;
@@ -68,14 +64,12 @@ public class GameManager : MonoBehaviour
 
         originalZoomSize = mainCamera.orthographicSize;
         originalCameraPosition = mainCamera.transform.position;
-        restartButtonComponent = restartButton.GetComponentInChildren<Button>();
+        //restartButton = GetComponent<Button>();
+        //restartButton.gameObject.SetActive(false);
 
-        Color buttonColor = restartButtonComponent.GetComponent<Image>().color;
-        buttonColor.a = 0f; // Gör knappen osynlig
-        restartButtonComponent.GetComponent<Image>().color = buttonColor;
-        restartButtonComponent.onClick.AddListener(OnRestartButtonClick);
         NewGame();
     }
+
 
     private void Update()
     {
@@ -84,7 +78,7 @@ public class GameManager : MonoBehaviour
             NewGame();
         }
 
-        // a bunch of timers to delay certain fucntions, like for example between waves and death
+        // A bunch of timers to delay certain fucntions, like for example between waves and death
         timer -= 10f;
         deathtimer -= 10f;
 
@@ -94,40 +88,43 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void OnRestartButtonClick()
+    public void OnRestartButtonClick()
     {
-        // Ladda om den scenen
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        restartButton.gameObject.SetActive(false);
+        mainMenu.gameObject.SetActive(false);
+
+        NewGame();
     }
     private void NewGame()
     {
+        Time.timeScale = 1f;
 
         SetScore(0);
         SetLives(3);
+
+        gameAudio.Play();
+        cutsceneSound.Stop();
         NewRound();
     }
 
     private void NewRound()
     {
-        if (timer <= 0f)
+        invaders.ResetInvaders();
+        invaders.gameObject.SetActive(true);
+
+        for (int i = 0; i < bunkers.Length; i++)
         {
-            invaders.ResetInvaders();
-            invaders.gameObject.SetActive(true);
-
-            for (int i = 0; i < bunkers.Length; i++)
-            {
-                bunkers[i].ResetBunker();
-            }
-
-            Respawn();
+            bunkers[i].ResetBunker();
         }
+
+        Respawn();
     }
 
     private void Respawn()
     {
         Vector3 position = player.transform.position;
         position.x = 0f;
-        //player.transform.position = position;
+        player.transform.position = position;
         player.gameObject.SetActive(true);
     }
 
@@ -156,55 +153,27 @@ public class GameManager : MonoBehaviour
 
     public void OnPlayerKilled(Player player)
     {
-        // Tidigare kod för att rensa objekt och inaktivera script
-        GameObject invaderGrid = GameObject.Find("InvaderGrid");
-        if (invaderGrid != null) Destroy(invaderGrid);
+        Time.timeScale = 0f;
 
-        Laser laser = FindObjectOfType<Laser>();
-        if (laser != null) laser.enabled = false;
+        cutsceneSound.Play();
+        gameAudio.Stop();
 
-        Missile missile = FindObjectOfType<Missile>();
-        if (missile != null) missile.enabled = false;
 
-        MysteryShip mysteryShip = FindObjectOfType<MysteryShip>();
-        if (mysteryShip != null) mysteryShip.enabled = false;
+        player.gameObject.SetActive(false);
+        invaders.gameObject.SetActive(false);
+        mysteryShip.gameObject.SetActive(false);
 
-        Player playerScript = player.GetComponent<Player>();
-        if (playerScript != null) playerScript.enabled = false;
-
-        // Hitta och stäng av HeartCode-skriptet
-        HeartCode heartCodeScript = FindObjectOfType<HeartCode>();
-        if (heartCodeScript != null)
-        {
-            heartCodeScript.enabled = false;
-        }
-
-        // Stoppa alla ljud inom GregoryHeart-objektet
-        GameObject gregoryHeart = GameObject.Find("GregoryHeart");
-        if (gregoryHeart != null)
-        {
-            AudioSource[] audioSources = gregoryHeart.GetComponentsInChildren<AudioSource>();
-            foreach (var audioSource in audioSources)
-            {
-                audioSource.Stop();
-            }
-        }
-
-        // Spela upp cutscene-ljudet
-        if (gameAudioSource != null && cutsceneSound != null)
-        {
-            gameAudioSource.clip = cutsceneSound;
-            gameAudioSource.loop = false;
-            gameAudioSource.Play();
-        }
+        restartButton.gameObject.SetActive(true);
+        mainMenu.gameObject.SetActive(true);
 
         // Starta cutscene-effekten
-        StartCoroutine(SmoothZoomInOnPlayer(player));
+        // StartCoroutine(SmoothZoomInOnPlayer(player));
     }
 
-
+    /*
     private IEnumerator SmoothZoomInOnPlayer(Player player)
     {
+        yield return null;
         // Stoppar allt ljud
         if (gameAudioSource != null)
         {
@@ -253,7 +222,7 @@ public class GameManager : MonoBehaviour
         deathtimer = 1500f;
     }
 
-    private IEnumerator SmoothZoomInOnPlayer(Player player)
+    private IEnumerator SmoothZoomOnPlayer(Player player)
     {
         // Zooms in on player (I don't know I didn't write this)
         float zoomDuration = 1f / zoomSpeed;
@@ -307,31 +276,13 @@ public class GameManager : MonoBehaviour
         Color buttonEndColor = new Color(buttonStartColor.r, buttonStartColor.g, buttonStartColor.b, 1f); // Slutfärgen med alpha 1
 
         elapsed = 0f;
-
-        // Fade in restartButton
-        while (elapsed < fadeDuration)
-        {
-            elapsed += Time.deltaTime;
-            Color newColor = Color.Lerp(buttonStartColor, buttonEndColor, elapsed / fadeDuration);
-            restartButton.GetComponent<Image>().color = newColor; // fade in effekt
-            yield return null;
-        }
     }
-
-
-
-
+    */
 
     public void OnInvaderKilled(Invader invader)
     {
-        // v�nta p� cutscene ska finish sedan logik f�r att reseta eller f� en restart button
-        yield return new WaitForSeconds(10f);
-    }
-    
+        // v�nta p� cutscene ska finish sedan logik f�r att reseta
 
-
-    public void OnInvaderKilled(Invader invader)
-    {
         invader.gameObject.SetActive(false);
 
         if (invader.invaderType == 1)
@@ -348,10 +299,15 @@ public class GameManager : MonoBehaviour
         }
         if (invaders.GetInvaderCount() == 0)
         {
-            wave++;
             SetScore(score);
-            timer = 350f;
+            NextWave();
         }
+    }
+
+    public void NextWave()
+    {
+        wave++;
+        timer = 350f;
     }
 
     public void OnMysteryShipKilled(MysteryShip mysteryShip)
@@ -360,13 +316,16 @@ public class GameManager : MonoBehaviour
         SetScore(score + 225);
     }
 
-     void OnBoundaryReached()
+    public void OnBoundaryReached()
     {
         if (invaders.gameObject.activeSelf)
         {
-            invaders.gameObject.SetActive(false); 
+            invaders.gameObject.SetActive(false);
             OnPlayerKilled(player);
         }
     }
-
+    public void MainMenu()
+    {
+        SceneManager.LoadSceneAsync("Menu");
+    }
 }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4690063271046800187}
   - component: {fileID: -3355645090637668525}
   - component: {fileID: 6852485216293180381}
+  - component: {fileID: -1779463910006218587}
   m_Layer: 9
   m_Name: Invader3
   m_TagString: Untagged
@@ -172,10 +173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad91fe5da359d964abf77a0609295661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSprites:
-  - {fileID: -2109843894, guid: 5a8fd2b63153bc64798ee6b79f1987d8, type: 3}
-  - {fileID: -1851747404, guid: 5a8fd2b63153bc64798ee6b79f1987d8, type: 3}
-  animationTime: 1
   explosion: {fileID: 7622750493054582692, guid: 76224a3b363afff44b6e91cf3e89cfd0, type: 3}
   death: {fileID: 6852485216293180381}
   invaderType: 3
@@ -275,3 +272,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-1779463910006218587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4967675847265965310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4574a7fef590a874587a52a27e1ad461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationSprites:
+  - {fileID: -2109843894, guid: 5a8fd2b63153bc64798ee6b79f1987d8, type: 3}
+  - {fileID: -1851747404, guid: 5a8fd2b63153bc64798ee6b79f1987d8, type: 3}
+  animationTime: 0.5

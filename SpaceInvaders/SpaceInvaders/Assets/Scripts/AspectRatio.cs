@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AspectRatio : MonoBehaviour
 {
     public float targetAspect = 1.0f; //1:1
 
-        //Håller kvar 1:1 aspect ratio oavsett resolution
+    // Maintains 1:1 aspect ratio regardless of resolution
     void Start()
     {
         float screenAspect = (float)Screen.width / Screen.height;
@@ -24,5 +22,5 @@ public class AspectRatio : MonoBehaviour
             camera.rect = new Rect((1.0f - scaleWidth) / 2.0f, 0, scaleWidth, 1.0f);
         }
     }
-    
+
 }

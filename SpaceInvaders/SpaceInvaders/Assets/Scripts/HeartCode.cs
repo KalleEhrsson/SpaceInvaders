@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HeartCode : MonoBehaviour
@@ -19,15 +17,7 @@ public class HeartCode : MonoBehaviour
     float[] line_y = new float[18];
     public AudioSource heartbeat;
     public AudioSource hurt;
-    public AudioSource music;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        music.Play();
-    }
-
-    // Update is called once per frame
     void FixedUpdate()
     {
         // Each time the heart beats, the artery lines get bigger in a wave (goes in a for loop, one part of the line gets big, then the other part next to it and so on)

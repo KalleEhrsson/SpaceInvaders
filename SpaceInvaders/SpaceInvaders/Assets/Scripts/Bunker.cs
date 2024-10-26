@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -19,20 +17,13 @@ public class Bunker : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-       
+        //Checks if a missile or an invader hits the bunker
         if (other.gameObject.layer == LayerMask.NameToLayer("Missile") || other.gameObject.layer == LayerMask.NameToLayer("Invader"))
         {
 
             GameObject.Find("Main Camera").GetComponent<ScreenShakeCode>().ScreenShake(0.5f);
-            /*
-            //Ändrar färgen beroende på antal träffar.
-            nrOfHits++;
-            Color oldColor = spRend.color;
-
-            Color newColor = new Color(oldColor.r +(nrOfHits*0.1f), oldColor.g + (nrOfHits * 0.1f), oldColor.b + (nrOfHits * 0.1f));
             
-            spRend.color = newColor;
-            */
+            //If the bunker gets hit number of hits go up and it changes sprite depending on how many hits.
             nrOfHits++;
             if(nrOfHits == 1)
             {
@@ -50,6 +41,7 @@ public class Bunker : MonoBehaviour
         }
     }
 
+    //Resets the bunker 
     public void ResetBunker()
     {
         gameObject.SetActive(true);

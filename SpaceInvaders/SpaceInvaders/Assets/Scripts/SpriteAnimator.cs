@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpriteAnimator : MonoBehaviour
 {
-    // Array med sprites som används för animationen
+    // Array with sprites used for the animation
     public Sprite[] animationSprites = new Sprite[2];
     public float animationTime;
 
@@ -14,24 +12,26 @@ public class SpriteAnimator : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        // Ställer in den första sprite från animationSprites
+
+        // Sets the first sprite used in the animation
         spriteRenderer.sprite = animationSprites[0];
     }
     private void Start()
     {
-        // Startar en metod som kallas "animateSprite" upprepade gånger med ett intervall av animationTime
+        // Starts animateSprite repeteadly with an intervall
         InvokeRepeating(nameof(animateSprite), animationTime, animationTime);
     }
     private void animateSprite()
     {
         animationFrame++;
 
-        // Om vi nått slutet av arrayen, återgår vi till första sprite
+        // If reach the end of the array, go back to the first sprite
         if (animationFrame >= animationSprites.Length)
         {
             animationFrame = 0;
         }
-        // Uppdaterar SpriteRenderer sprite till nästa i animationen
+
+        // Updates the spriteRenderer to the next sprite in the animation
         spriteRenderer.sprite = animationSprites[animationFrame];
     }
 }

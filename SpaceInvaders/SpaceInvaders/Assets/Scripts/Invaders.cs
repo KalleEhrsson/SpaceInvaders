@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class Invaders : MonoBehaviour
@@ -30,35 +26,50 @@ public class Invaders : MonoBehaviour
     }
 
     //Skapar själva griden med alla invaders.
-    void CreateInvaderGrid()
+    public void CreateInvaderGrid()
     {
-        for(int r = 0; r < row; r++)
+        // Check if invaders already exist to avoid duplicating
+        if (transform.childCount > 0)
+        {
+            // Optional: Clear existing children if you want to reset completely
+            foreach (Transform child in transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
+        // Create the grid
+        for (int r = 0; r < row; r++)
         {
             float width = 2.5f * (col - 1);
             float height = 2.5f * (row - 1);
 
-            //för att centerar invaders
             Vector2 centerOffset = new Vector2(-width * 0.5f, -height * 0.5f);
             Vector3 rowPosition = new Vector3(centerOffset.x, (2.5f * r) + centerOffset.y, 0f);
-            
+
             for (int c = 0; c < col; c++)
             {
                 Invader tempInvader = Instantiate(prefab[r], transform);
-
                 Vector3 position = rowPosition;
                 position.x += 2.5f * c;
                 tempInvader.transform.localPosition = position;
             }
         }
     }
-    
-    //Aktiverar alla invaders igen och placerar från ursprungsposition
+
     public void ResetInvaders()
     {
+        // If there are no active invaders, recreate the grid
+        if (transform.childCount == 0)
+        {
+            CreateInvaderGrid();
+        }
+
         direction = Vector3.right;
         transform.position = initialPosition;
 
-        foreach(Transform invader in transform)
+        // Activate all invaders
+        foreach (Transform invader in transform)
         {
             invader.gameObject.SetActive(true);
         }
@@ -69,22 +80,22 @@ public class Invaders : MonoBehaviour
     {
         int nrOfInvaders = GetInvaderCount();
 
-        if(nrOfInvaders == 0)
+        if (nrOfInvaders == 0)
         {
             return;
         }
 
-        foreach(Transform invader in transform)
+        foreach (Transform invader in transform)
         {
 
             if (!invader.gameObject.activeInHierarchy) //om en invader är död ska den inte kunna skjuta...
                 continue;
-            
-           
+
+
             // increases the randomnes for bullets based on waves (adds chance for double bullet as well)
             float rand = UnityEngine.Random.value;
 
-            float _target = 0.1f + (GameObject.Find("GameManager").GetComponent<GameManager>().wave*0.1f);
+            float _target = 0.1f + (GameObject.Find("GameManager").GetComponent<GameManager>().wave * 0.1f);
             _target = Mathf.Clamp(_target, 0.2f, 0.9f);
             float _double = 0f + (GameObject.Find("GameManager").GetComponent<GameManager>().wave * 0.085f);
             _double = Mathf.Clamp(_double, 0f, 0.4f);
@@ -94,11 +105,11 @@ public class Invaders : MonoBehaviour
                 rand = UnityEngine.Random.value;
                 if (rand < _double)
                 {
-                    Missile missile_1 = Instantiate(missilePrefab, invader.position + new Vector3(-0.5f,0,0), Quaternion.identity);
-                    missile_1.GetComponent<Missile>().other_dir = 1;
+                    Missile missile_1 = Instantiate(missilePrefab, invader.position + new Vector3(-0.5f, 0, 0), Quaternion.identity);
+                    missile_1.GetComponent<Missile>().otherDirection = 1;
 
                     Missile missile_2 = Instantiate(missilePrefab, invader.position + new Vector3(0.5f, 0, 0), Quaternion.identity);
-                    missile_2.GetComponent<Missile>().other_dir = -1;
+                    missile_2.GetComponent<Missile>().otherDirection = -1;
                 }
                 else
                 {
@@ -107,7 +118,7 @@ public class Invaders : MonoBehaviour
                 break;
             }
         }
-       
+
     }
 
     //Kollar hur många invaders som lever
@@ -115,7 +126,7 @@ public class Invaders : MonoBehaviour
     {
         int nr = 0;
 
-        foreach(Transform invader in transform)
+        foreach (Transform invader in transform)
         {
             if (invader.gameObject.activeSelf)
                 nr++;
@@ -127,7 +138,7 @@ public class Invaders : MonoBehaviour
     void Update()
     {
         // we make some movement here manipulated by waves
-        float speed = 1f+(GameObject.Find("GameManager").GetComponent<GameManager>().wave*0.2f);
+        float speed = 1f + (GameObject.Find("GameManager").GetComponent<GameManager>().wave * 0.2f);
         speed = Mathf.Clamp(speed, 1f, 3f);
         transform.position += speed * Time.deltaTime * direction;
 
