@@ -7,15 +7,6 @@ It’s not just a game… it’s a little audiovisual concert of chaos.
 
 ---
 
-## Table of Contents
-
-- [Features](#features)
-- [How to Play](#how-to-play)
-- [Tech Stack](#tech-stack)
-- [Contributors](#contributors)
-
----
-
 ## 🚀 Features
 
 - **Beat-synced waves** — invaders spawn and dive in time with the music  
